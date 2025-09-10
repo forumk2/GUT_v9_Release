@@ -1,0 +1,26 @@
+
+=== Scan complete (v5) ===
+Best MI  ≈ 10^10.311 GeV
+Best MGUT≈ 10^16.193 GeV
+Residual mismatch @ MGUT: 0.05%
+alpha_GUT ≈ 0.0234
+tau_p (p→ e^+π^0) ≈ 1.74e+36 years
+
+Settings:
+  b3_LR: -5.8
+  b2L_LR: -1.7
+  b2R_LR: -1.7
+  bBL_LR: 6.7
+  split_r: 1.0
+  dalpha1: 0.001
+  dalpha2: 0.001
+  dalpha3: -0.001
+  two_loop: True
+  multiplets_used: True
+Seesaw mν for y=1.00: ~1.480e+03 eV (MR≈MI≈ 10^10.31 GeV)
+Seesaw mν for y=0.30: ~1.332e+02 eV (MR≈MI≈ 10^10.31 GeV)
+Seesaw mν for y=0.10: ~1.480e+01 eV (MR≈MI≈ 10^10.31 GeV)
+Seesaw mν for y=0.03: ~1.332e+00 eV (MR≈MI≈ 10^10.31 GeV)
+
+CSV written to: out/scan.csv
+Best fit JSON : out/best_fit.json

@@ -1,0 +1,15 @@
+# v9 Validation Summary (20250909_203538)
+
+Winner A (b3=-5.8, b2=-1.6, bbl=6.5, split=0.9, da=+,+,-):
+Best MI  ≈ 10^10.563 GeV
+Best MGUT≈ 10^16.069 GeV
+Residual mismatch @ MGUT: 0.06%
+alpha_GUT ≈ 0.0235
+tau_p (p→ e^+π^0) ≈ 5.50e+35 years
+
+Winner B (b3=-5.8, b2=-1.7, bbl=6.7, split=1.0, da=+,+,-):
+Best MI  ≈ 10^10.311 GeV
+Best MGUT≈ 10^16.193 GeV
+Residual mismatch @ MGUT: 0.05%
+alpha_GUT ≈ 0.0234
+tau_p (p→ e^+π^0) ≈ 1.74e+36 years
