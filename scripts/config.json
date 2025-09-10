@@ -1,0 +1,22 @@
+{
+  "MZ_GeV": 91.1876,
+  "alpha_em_MZ": 0.007815247547966081,
+  "sin2thetaW_MZ": 0.23122,
+  "alpha3_MZ": 0.1181,
+  "alpha_H_GeV3": 0.012,
+  "scan_log10_MI_min": 9.0,
+  "scan_log10_MI_max": 15.0,
+  "scan_points": 120,
+  "b1_SM": 4.1,
+  "b2_SM": -3.1666666666666665,
+  "b3_SM": -7.0,
+  "b3_LR": -7.0,
+  "b2L_LR": -3.0,
+  "b2R_LR": -3.0,
+  "bBL_LR": 4.0,
+  "root_bracket_log10": [
+    14.5,
+    17.5
+  ],
+  "max_root_iters": 60
+}

@@ -89,6 +89,12 @@ If your `rge_scan_v5.py` and `auto_tune_fast.py` live elsewhere, you can:
 - Edit the script and replace `python rge_scan_v5.py` with `python /full/path/to/rge_scan_v5.py`
 - Or set `PYTHONPATH` so imports like `rge_core` resolve.
 
+## Winning Commands (so far): 
+
+python rge_scan_v5.py --two-loop --multiplets spectrum_balanced_v8.json \
+  --b3LR -5.8 --b2L -1.6 --b2R -1.6 --bBL 6.5 --split-r 0.9 \
+  --dalpha1 0.001 --dalpha2 0.001 --dalpha3 -0.001
+
 ---
 
 ## Winning parameters (for reference)
@@ -107,6 +113,10 @@ If your `rge_scan_v5.py` and `auto_tune_fast.py` live elsewhere, you can:
 - Residual mismatch @ MGUT: **0.06%**  
 - α_GUT ≈ **0.0235**  
 - τₚ(p→e⁺π⁰) ≈ **5.5×10^35 years**
+
+---
+
+## Remarks
 
 ---
 
