@@ -1,13 +1,12 @@
 
 # GUT v9 Milestone (Two-Loop, LR Slopes Tuned)
-
-This package contains a small, repo-ready bundle to **reproduce the v9 milestone** you just hit:
+ 
 - **Proton lifetime** τₚ(p→e⁺π⁰) ≈ **5.5 × 10³⁵ years**
 - **Residual mismatch** @ MGUT ≈ **0.06%**
 - **MGUT** ≈ **1.17 × 10¹⁶ GeV**, **α_GUT ≈ 0.0235**
 - Based on **two-loop running** with LR slopes tuned and tiny Δα thresholds.
 
-> **Note:** This bundle assumes you already have your working codebase checked out with the runners:
+> **Note:** This bundle assumes you already have the working codebase checked out with the runners:
 > - `rge_scan_v5.py` (scanner)
 > - `auto_tune_fast.py` (fast autotuner)
 > - `spectrum_balanced_v8.json` (multiplet spectrum JSON you used for v8/v9)
@@ -33,12 +32,12 @@ README.md                 # this file
 ## Quick start
 
 ### 0) Prereqs
-- Python 3.10+ with numpy (and any other deps your codebase needs).
+- Python 3.10+ with numpy (and any other deps the codebase needs).
 - Git Bash or WSL (or any Bash shell). On Windows PowerShell, install Git Bash.
-- Your working codebase with `rge_scan_v5.py`, `auto_tune_fast.py`, and `spectrum_balanced_v8.json` available.
+- the working codebase with `rge_scan_v5.py`, `auto_tune_fast.py`, and `spectrum_balanced_v8.json` available.
 
 ### 1) Place this folder
-Put this `gut_v9_release/` folder **inside** the same directory that contains your scanners, or set the environment variable `PYTHONPATH` / use relative paths (see configuring paths).
+Put this `gut_v9_release/` folder **inside** the same directory that contains the scanners, or set the environment variable `PYTHONPATH` / use relative paths (see configuring paths).
 
 ### 2) Ensure UTF‑8 output (Windows)
 Some consoles choke on Unicode (≈, →, π). Two options:
@@ -85,7 +84,7 @@ chmod +x one_shots.sh
 
 ## Configuring paths
 
-If your `rge_scan_v5.py` and `auto_tune_fast.py` live elsewhere, you can:
+If the `rge_scan_v5.py` and `auto_tune_fast.py` live elsewhere, you can:
 - Edit the script and replace `python rge_scan_v5.py` with `python /full/path/to/rge_scan_v5.py`
 - Or set `PYTHONPATH` so imports like `rge_core` resolve.
 
@@ -159,7 +158,7 @@ A rigorous, falsifiable plan to confirm (or refute) that the **v9 constants & sl
    - Record band of {residual, MGUT, τ}. Winner should remain in the “safe τ / tight residual” zone.
 
 6. **Threshold modeling**  
-   - Replace Δα “fudge” with **explicit heavy multiplet thresholds** from your spectrum where possible (or bracket with plausible ranges).  
+   - Replace Δα “fudge” with **explicit heavy multiplet thresholds** from the spectrum where possible (or bracket with plausible ranges).  
    - Verify qualitative stability of MGUT and τ.
 
 7. **Integrator / step-size stability**  
@@ -182,7 +181,7 @@ A rigorous, falsifiable plan to confirm (or refute) that the **v9 constants & sl
 
 11. **Two figures**  
     - (i) Coupling lines meeting at MGUT for winner vs a near-miss.  
-    - (ii) τ vs MGUT with points from your grid; overlay τ ∝ M⁴/α² curve.
+    - (ii) τ vs MGUT with points from the grid; overlay τ ∝ M⁴/α² curve.
 
 ## F. Pass/Fail Criteria
 - **PASS**: There exists a neighborhood of points meeting: residual ≤ 0.2%, τ ≥ 1e35 yr, and a ν-consistent configuration (with smaller y or slightly larger MI). τ scaling holds within tolerance; results stable under A–C variations.  
@@ -191,4 +190,4 @@ A rigorous, falsifiable plan to confirm (or refute) that the **v9 constants & sl
 --
 
 ## License
-Use freely within your repo/project. If you publish, please include a short acknowledgment of the v9 milestone sweep/scaffold.
+Use freely within the repo/project. If you publish, please include a short acknowledgment of the v9 milestone sweep/scaffold.
