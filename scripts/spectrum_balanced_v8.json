@@ -1,0 +1,82 @@
+[
+  {
+    "name": "U1_piece_light_A",
+    "group": "SM",
+    "b": [
+      1.1,
+      0.0,
+      0.0
+    ],
+    "mass_GeV": 1e+16
+  },
+  {
+    "name": "U1_piece_light_B",
+    "group": "SM",
+    "b": [
+      0.6,
+      0.0,
+      0.0
+    ],
+    "mass_GeV": 1.6e+16
+  },
+  {
+    "name": "SU2_piece_heavy_A",
+    "group": "SM",
+    "b": [
+      0.0,
+      -1.1,
+      0.0
+    ],
+    "mass_GeV": 4.2e+16
+  },
+  {
+    "name": "SU2_piece_heavy_B",
+    "group": "SM",
+    "b": [
+      0.0,
+      -0.7,
+      0.0
+    ],
+    "mass_GeV": 3.8e+16
+  },
+  {
+    "name": "Colored_mod_A",
+    "group": "SM",
+    "b": [
+      0.0,
+      0.0,
+      -0.9
+    ],
+    "mass_GeV": 4e+16
+  },
+  {
+    "name": "Colored_mod_B",
+    "group": "SM",
+    "b": [
+      0.0,
+      0.0,
+      -0.5
+    ],
+    "mass_GeV": 4.5e+16
+  },
+  {
+    "name": "ColorTripletH_mod",
+    "group": "SM",
+    "b": [
+      0.13,
+      0.0,
+      0.4
+    ],
+    "mass_GeV": 3.2e+16
+  },
+  {
+    "name": "Mixed_piece",
+    "group": "SM",
+    "b": [
+      0.35,
+      -0.45,
+      0.0
+    ],
+    "mass_GeV": 2.8e+16
+  }
+]
