@@ -118,7 +118,77 @@ python rge_scan_v5.py --two-loop --multiplets spectrum_balanced_v8.json \
 
 ## Remarks
 
+# Show the 10 best points by tau (residual ≤ 0.2%)
+python scripts/top10.py out/v9/scan_v9_summary.csv -N 10 --by tau
+
+# Same, but check tau scaling vs the winning tag
+python scripts/top10.py out/v9/scan_v9_summary.csv -N 10 --by tau \
+  --scaling-check --ref-tag b3_-5.8_b2_-1.6_bbl_6.5_split_0.9_da_0.001_0.001_-0.001
+
 ---
+
+## Misc
+
+# VERIFY: Evidence Checklist for the v9 Milestone
+A rigorous, falsifiable plan to confirm (or refute) that the **v9 constants & slope/threshold pattern** robustly produce tight unification and safe proton decay.
+
+## A. Reproducibility (core)
+1. **Exact one-shot winner**  
+   - Run the known winning command and capture stdout and JSON.  
+   - Save to `results/winner/`.  
+   - Verify: residual ≤ **0.06%**, τ ≥ **1e35 yr**, log10(MGUT) ≈ **16.07**.
+
+2. **Full v9 grid (288)**  
+   - Run `try_balanced_v9.sh`.  
+   - Confirm the same winner (or a neighbor) appears in `phase2.csv`.  
+   - Save `out/v9/scan_v9_summary.csv` under version control (or LFS).
+
+## B. Scaling & Mechanism (physics sanity)
+3. **τ scaling law check**  
+   - For candidate points near the winner, verify:  
+     \[ \tau_p \propto \frac{M_{\mathrm{GUT}}^4}{\alpha_{\mathrm{GUT}}^2} \]  
+   - Compute predicted τ from (MGUT, α) relative to the winner and compare to reported τ (within ~10–20%).
+
+4. **Slope/threshold ablations**  
+   - Vary one knob at a time from the winner: b3, b2L/R, bBL, split_r, Δα pattern.  
+   - Expect: easing b3 (less negative) and slightly hardening b2L/R raise MGUT; Δα=(+,+,−) lifts meet by ~0.05–0.1 dex.
+
+## C. Robustness (review-proof)
+5. **SM input uncertainties**  
+   - Re-run with α3(MZ), sin²θ_W, α_em varied by ±1σ.  
+   - Record band of {residual, MGUT, τ}. Winner should remain in the “safe τ / tight residual” zone.
+
+6. **Threshold modeling**  
+   - Replace Δα “fudge” with **explicit heavy multiplet thresholds** from your spectrum where possible (or bracket with plausible ranges).  
+   - Verify qualitative stability of MGUT and τ.
+
+7. **Integrator / step-size stability**  
+   - Halve and double RGE step sizes (or tolerance) at two-loop.  
+   - Residual and MGUT should shift only slightly; trends should persist.
+
+8. **Scheme/option toggles** (if supported)  
+   - Check 1-loop vs 2-loop to show necessity of 2-loop precision.  
+   - If MS̄/DR̄ toggles exist, compare for qualitative stability.
+
+## D. Neutrino sector consistency
+9. **ν-friendly autotune**  
+   - Run `auto_tune_fast.py` with `--mnu-target ~0.04` and `--y-ref ~0.007`.  
+   - Show at least one point with Σmν in the cosmology-friendly range **while** keeping τ ≥ 1e35 yr and residual ≤ 0.2%.
+
+## E. Presentation (“paper-ready”)
+10. **Top-10 table**  
+    - Produce a top-10 leaderboard under residual ≤0.2% sorted by τ.  
+    - Include (log10 MI, log10 MGUT, τ, α_GUT, b’s, split_r, Δα).
+
+11. **Two figures**  
+    - (i) Coupling lines meeting at MGUT for winner vs a near-miss.  
+    - (ii) τ vs MGUT with points from your grid; overlay τ ∝ M⁴/α² curve.
+
+## F. Pass/Fail Criteria
+- **PASS**: There exists a neighborhood of points meeting: residual ≤ 0.2%, τ ≥ 1e35 yr, and a ν-consistent configuration (with smaller y or slightly larger MI). τ scaling holds within tolerance; results stable under A–C variations.  
+- **FAIL**: Winner is isolated and collapses under small input/step variations, τ scaling breaks badly, or ν consistency cannot be achieved without destroying τ/residual.
+
+--
 
 ## License
 Use freely within your repo/project. If you publish, please include a short acknowledgment of the v9 milestone sweep/scaffold.
