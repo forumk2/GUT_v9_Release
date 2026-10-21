@@ -1,16 +1,134 @@
-# Two-Loop RGE Parameter Scanner
+# Two-Loop RGE Scan for an Intermediate-Scale Left-Right Model
 
-This is a parameter-search harness that scans over slope coefficients and threshold corrections (Δα), searching for points of low residual mismatch under a specified multiplet spectrum, using two-loop gauge coupling running and a tree-level proton lifetime estimator. It does not derive unification — the threshold corrections are free parameters that are tuned by the scanner, not computed from the heavy multiplet spectrum.
+This repository runs two-loop gauge-coupling evolution through the chain
+SM → SU(3)_c × SU(2)_L × SU(2)_R × U(1)_{B-L} → unified, for a multiplet
+spectrum supplied as a JSON file, and reports the intermediate scale M_I,
+the unification scale M_GUT, α_GUT, a residual mismatch, and a tree-level
+proton-lifetime estimate.
+
+**Everything that enters the calculation is either low-energy data
+(`config.json`) or multiplet content (a spectrum file).** The beta
+coefficients, the GUT-scale threshold corrections and the split of the
+hypercharge coupling at M_I are all computed from the spectrum. There are no
+slope coefficients, threshold shifts, or split ratios on the command line, and
+the scanner refuses them if they are passed.
+
+Earlier versions of this repository (see `reports/historical/` and the git
+history) scanned over free LR slope coefficients and free Δα shifts. Those
+low-residual points were fits. That mode has been removed, not just
+deprecated.
 
 ---
 
-## What this is not
+## What the code does
 
-- **Threshold corrections (Δα) are free parameters**, scanned over a grid, not derived from the heavy spectrum. A low-residual point is a fit to the chosen Δα values, not a prediction.
-- **Slope coefficients** (b3\_LR, b2L\_LR, b2R\_LR, bBL\_LR, split\_r) are also free parameters in the scan. They are inputs, not outputs.
-- **Reported τ\_p values are tree-level estimates.** They do not include hadronic matrix elements, one-loop corrections to decay operators, or proper threshold matching. They should be treated as order-of-magnitude placeholders.
-- **Low-residual points are fits, not predictions of unification.** Finding a point where the couplings nearly meet under the scanned parameters does not imply the underlying model predicts unification.
-- **Results should not be interpreted as physical predictions** without independent derivation of the threshold corrections from the multiplet spectrum and proper matrix-element computation for proton decay.
+For each trial M_I on a grid:
+
+1. Two-loop SM running M_Z → M_I (`two_loop_core.py`, RK4).
+2. Tree-level matching SM → LR at M_I (`rge_core.match_SM_to_LR_with_ratio`).
+3. M_GUT from the α_2L = α_3 crossing. The one-loop analytic locator in
+   `rge_core.py` seeds a secant refinement so that the crossing holds for the
+   two-loop, threshold-corrected couplings.
+4. Two-loop LR running M_I → M_GUT with one- and two-loop gauge coefficients
+   **derived from the spectrum** (`lr_betas.py`).
+5. One-loop leading-log thresholds at M_GUT from the spectrum's heavy
+   multiplets and their masses (`rge_scan_v5.compute_multiplet_thresholds`):
+   Δ(1/α_i) = (b_i^H / 2π) ln(M_H / M_GUT), with b_i^H derived from the
+   representation.
+6. The split of 1/α_1 into 1/α_2R and 1/α_BL at M_I, which low-energy data
+   does not fix, is set by a model property declared in the spectrum file:
+   - `"split_at_MI": "unification"` solves it from α_2R(M_GUT) = α_BL(M_GUT)
+     (left-right parity broken at M_GUT, as in most SO(10) chains).
+   - `"split_at_MI": "lr_parity"` imposes g_L = g_R at M_I (manifest
+     left-right symmetry). Nothing is solved for.
+7. Residual = max fractional deviation of (1/α_1, 1/α_2L, 1/α_3, 1/α_2R,
+   1/α_BL) from their mean at M_GUT (`rge_core.mismatch_metrics_n`).
+8. Tree-level τ_p estimate ∝ M_GUT⁴ / (α_GUT² α_H²).
+
+The grid minimum of the residual is refined by a golden-section search in
+log10 M_I and reported.
+
+### How to read the residual
+
+- In **unification** mode the unknowns (M_I, M_GUT, α_GUT, split) are as
+  many as the unification conditions. A residual of zero therefore means only
+  that a self-consistent solution exists inside the scanned range. The
+  physical output is the **predicted** M_I, M_GUT, α_GUT and α_2R(M_I). If no
+  solution exists in range, the residual is non-zero at a boundary.
+- In **lr_parity** mode the system is over-determined and the residual is a
+  genuine test of the content. For example, the minimal content below gives a
+  1.7% residual at best under g_L = g_R, i.e. it does not unify that way.
+
+---
+
+## Spectrum files
+
+Format `lr_spectrum_v1` (see the `lr_betas.py` docstring). Each field gives
+its dimensions under SU(3)_c, SU(2)_L, SU(2)_R, its B-L charge (quarks 1/3,
+leptons −1), its type (`weyl`, `dirac`, `complex`, `real`, or `vector` for
+heavy gauge multiplets in the threshold list) and a multiplicity. Threshold
+entries also carry `mass_GeV`.
+
+```
+scripts/spectra/
+  lr_minimal.json               fermions (3 gen, incl. nu_R) + Phi(1,2,2,0) + Delta_R(1,1,3,2); no thresholds
+  so10_10_126_thresholds.json   same LR content + remaining components of a complex 10_H and 126_H
+                                of SO(10) as GUT-scale thresholds, all at an ASSUMED common 1e16 GeV
+  lr_dparity_symmetric.json     fermions + Phi + Delta_L + Delta_R, g_L = g_R imposed at M_I
+```
+
+Derived LR-stage coefficients for the minimal content (printed by
+`python scripts/lr_betas.py scripts/spectra/lr_minimal.json`):
+
+```
+b_i   (SU3c, SU2L, SU2R, U1BL) = (-7, -3, -7/3, 11/2)
+b_ij  SU3c:  -26   9/2   9/2   1/2
+      SU2L:   12     8     3   3/2
+      SU2R:   12     3  80/3  27/2
+      U1BL:    4   9/2  81/2  61/2
+```
+
+`test_lr_betas.py` checks that the same routine reproduces the textbook SM
+one- and two-loop coefficients exactly as rationals.
+
+---
+
+## Results for the example spectra (two-loop, default settings)
+
+| spectrum | split | log10 M_I | log10 M_GUT | α_GUT | residual | τ_p (tree-level) |
+|---|---|---|---|---|---|---|
+| lr_minimal | unification | 9.454 | 16.177 | 0.02205 (1/45.35) | 0.0000% | 1.7 × 10³⁶ yr |
+| so10_10_126_thresholds | unification | 9.484 | 16.194 | 0.02245 (1/44.54) | 0.0000% | 1.9 × 10³⁶ yr |
+| lr_dparity_symmetric | lr_parity | 10.494 | 15.358 | 0.02313 (1/43.24) | 0.0000% | 8.1 × 10³² yr |
+
+Zero residuals in the first two rows are the exactly-determined case
+described above; the content *predicts* those scales. The third row is also
+exactly determined because its content is left-right symmetric; its M_GUT is
+low enough that the tree-level τ_p falls well below the Super-Kamiokande
+bound, which is the familiar problem of D-parity-conserving chains. The
+one-loop run of `lr_minimal` (`--one-loop`) gives log10 M_I = 9.02 and
+log10 M_GUT = 16.66.
+
+---
+
+## What remains approximate
+
+- **τ_p is a tree-level dimensional estimate.** No hadronic matrix element,
+  no operator running, no flavour structure, M_X = M_GUT assumed. Treat as
+  order-of-magnitude.
+- **Two-loop coefficients are gauge-only.** Yukawa contributions to the gauge
+  betas are not included in either stage.
+- **Thresholds are one-loop leading-log step functions.** No finite,
+  scheme-dependent matching constants.
+- **Matching at M_I is tree-level.** No thresholds from W_R, Δ_R, ν_R or the
+  heavy half of the bidoublet; exactly one SM Higgs doublet is assumed light
+  below M_I.
+- **The example spectra make assumptions:** the heavy 10_H/126_H components in
+  `so10_10_126_thresholds.json` sit at a single illustrative mass; the SO(10)/LR
+  gauge bosons are assumed degenerate with M_GUT; B-L assignments follow the
+  standard convention (quarks 1/3, leptons −1, Δ_R ±2, bidoublet 0).
+- A low residual, where it appears, is a property of the supplied multiplet
+  content and the scan range. It is not a completed unification calculation.
 
 ---
 
@@ -18,123 +136,38 @@ This is a parameter-search harness that scans over slope coefficients and thresh
 
 ```
 scripts/
-  rge_scan_v5.py           # main scanner: two-loop RGE over a parameter grid
-  auto_tune_fast.py        # fast local search around a seed point
-  rge_core.py              # RGE integration core
-  two_loop_core.py         # two-loop beta function coefficients
-  top10.py                 # display top-N scan points by residual or tau
-  try_balanced_v9.sh       # wide grid sweep + autotune + local ring sweep
-  one_shots.sh             # single-point runs for specific parameter sets
-  validate.sh              # reproducibility check script
-  spectrum_balanced_v8.json  # multiplet spectrum definition used for scans
-  config.json              # scanner configuration
-reports/
-  historical/
-    v9_victory_report.md   # historical document; see note inside
-README.md                  # this file
+  rge_scan_v5.py        scanner (spectrum-derived mode)
+  lr_betas.py           group theory + beta derivation + spectrum loader
+  rge_core.py           matching, M_GUT locator, residual metric
+  two_loop_core.py      two-loop RK4 integrator
+  test_lr_betas.py      consistency checks
+  sweep_spectra.sh      run every spectrum in spectra/ and tabulate
+  one_shots.sh          the three example runs
+  validate.sh           reproducibility check (see REPRODUCE.md)
+  top10.py              tabulate a summary CSV
+  spectra/              example spectrum files
+  config.json           low-energy inputs, scan range, M_GUT bracket
+  out/                  outputs of the example runs
+reports/historical/     old knob-based "victory report"; not a current claim
 ```
-
----
 
 ## Quick start
 
-### Prerequisites
-- Python 3.10+ with numpy
-- Git Bash, WSL, or any Bash shell (Windows: use Git Bash)
+Python 3.10+ with numpy. On Windows use Git Bash and
+`export PYTHONIOENCODING=utf-8`.
 
-### Ensure UTF-8 output (Windows)
-
-**PowerShell**
-```powershell
-$env:PYTHONIOENCODING = 'utf-8'
-[Console]::OutputEncoding = [System.Text.UTF8Encoding]::new()
-```
-
-**CMD**
-```cmd
-chcp 65001
-set PYTHONIOENCODING=utf-8
-```
-
-**Bash (Git Bash/WSL)**
-```bash
-export PYTHONIOENCODING=utf-8
-```
-
-### Run a grid sweep
 ```bash
 cd scripts
-chmod +x try_balanced_v9.sh
-./try_balanced_v9.sh
+python test_lr_betas.py
+python rge_scan_v5.py --spectrum spectra/lr_minimal.json
+bash sweep_spectra.sh          # all spectra -> out/spectra_summary.csv
+bash validate.sh               # reproducibility check
 ```
 
-### Run a single-point scan
-```bash
-python scripts/rge_scan_v5.py --two-loop --multiplets spectrum_balanced_v8.json \
-  --b3LR -5.8 --b2L -1.6 --b2R -1.6 --bBL 6.5 --split-r 0.9 \
-  --dalpha1 0.001 --dalpha2 0.001 --dalpha3 -0.001
-```
-
-### Run the reproducibility check
-```bash
-bash scripts/validate.sh
-```
-See [scripts/REPRODUCE.md](scripts/REPRODUCE.md) for details.
-
----
-
-## Outputs
-
-The scanner produces:
-
-- `out/v9/scan_v9_summary.csv` — full grid results with columns for each free parameter and computed quantities (residual mismatch, log10(MGUT), α\_GUT, τ\_p)
-- `out/v9/candidates/phase1.csv` — points passing a first-pass residual cut
-- `out/v9/candidates/phase2.csv` — points in a tighter residual/tau band
-- `out/best_fit.json` — parameter set and outputs for the lowest-residual point found
-- `results/validate/` — archived logs from reproducibility runs
-
-No output is labeled a "winner." Points that appear in phase2.csv are parameter combinations that produce low residual under the scan conditions.
-
-### Inspecting scan results
-```bash
-# Show the 10 lowest-residual points from the scan
-python scripts/top10.py out/v9/scan_v9_summary.csv -N 10 --by tau
-
-# Tau scaling check relative to a reference point
-python scripts/top10.py out/v9/scan_v9_summary.csv -N 10 --by tau \
-  --scaling-check --ref-tag b3_-5.8_b2_-1.6_bbl_6.5_split_0.9_da_0.001_0.001_-0.001
-```
-
----
-
-## Reference scan points
-
-These are example parameter points the scanner produces low-residual output for, under `spectrum_balanced_v8.json`, used as reproducibility anchors for the scan.
-
-**Point A**
-- b3\_LR = -5.8, b2L\_LR = -1.6, b2R\_LR = -1.6, bBL\_LR = 6.5, split\_r = 0.9
-- Δα = (+0.001, +0.001, -0.001) ← free parameters
-- two\_loop = True, multiplets\_used = True
-- Outputs: residual ≈ 0.06%, log10(MGUT) ≈ 16.07, α\_GUT ≈ 0.0235, τ\_p ≈ 5.5×10³⁵ yr (tree-level estimate)
-
-**Point B**
-- b3\_LR = -5.8, b2L\_LR = -1.7, b2R\_LR = -1.7, bBL\_LR = 6.7, split\_r = 1.0
-- Δα = (+0.001, +0.001, -0.001) ← free parameters
-- two\_loop = True, multiplets\_used = True
-- Outputs: residual ≈ 0.05%, log10(MGUT) ≈ 16.07, α\_GUT ≈ 0.0235, τ\_p ≈ 1.7×10³⁶ yr (tree-level estimate)
-
-These points demonstrate that the scanner can locate regions of parameter space with sub-0.1% residual. They are not predictions of physical unification.
-
----
-
-## Configuring paths
-
-If `rge_scan_v5.py` and `auto_tune_fast.py` live in a different directory:
-- Edit the shell scripts and replace `python rge_scan_v5.py` with the full path
-- Or set `PYTHONPATH` so imports like `rge_core` resolve
-
----
+Options: `--mi-min/--mi-max/--scan-points` (M_I grid), `--one-loop`,
+`--rk-steps` (default 400; results unchanged to 4 significant figures between
+200 and 3000), `--outdir`.
 
 ## License
 
-Licensed under the Apache License, Version 2.0. See [LICENSE](LICENSE) for terms.
+Apache License 2.0. See [LICENSE](LICENSE).

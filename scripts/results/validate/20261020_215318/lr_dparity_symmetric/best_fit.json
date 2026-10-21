@@ -1,0 +1,92 @@
+{
+  "mode": "spectrum_derived",
+  "spectrum_file": "C:\\Users\\ForumK2\\Documents\\GitHub\\GUT_v9_Release\\scripts\\spectra\\lr_dparity_symmetric.json",
+  "spectrum_name": "lr_dparity_symmetric",
+  "two_loop": true,
+  "rk_steps": 400,
+  "derived_lr_betas_one_loop": {
+    "SU3c": "-7",
+    "SU2L": "-7/3",
+    "SU2R": "-7/3",
+    "U1BL": "7"
+  },
+  "derived_lr_betas_two_loop": {
+    "SU3c": [
+      "-26",
+      "9/2",
+      "9/2",
+      "1/2"
+    ],
+    "SU2L": [
+      "12",
+      "80/3",
+      "3",
+      "27/2"
+    ],
+    "SU2R": [
+      "12",
+      "3",
+      "80/3",
+      "27/2"
+    ],
+    "U1BL": [
+      "4",
+      "81/2",
+      "81/2",
+      "115/2"
+    ]
+  },
+  "gut_threshold_multiplets": [],
+  "free_parameters": [],
+  "split_at_MI": "lr_parity",
+  "scanned": {
+    "log10_MI": [
+      4.0,
+      15.0,
+      120
+    ]
+  },
+  "best": {
+    "log10_MI": 10.494006569119113,
+    "MI_GeV": 31189367606.36552,
+    "log10_MGUT": 15.35823227592043,
+    "MGUT_GeV": 2281562005118756.0,
+    "split_r_solved": 0.6990112557737875,
+    "split_mode": "lr_parity",
+    "alpha_inv_at_MI": {
+      "alpha_1": 46.03374590218689,
+      "alpha_2L": 39.27000405478366,
+      "alpha_3": 30.695639973858746,
+      "alpha_2R": 39.27000405478366,
+      "alpha_BL": 56.17935867329171
+    },
+    "max_frac": 2.893306151769958e-09,
+    "max_frac_3": 1.0715942691597102e-09,
+    "spread": 1.7376734007257255e-07,
+    "alpha_GUT": 0.023125642723996205,
+    "alpha_inv_at_MGUT": {
+      "alpha_1": 43.24204141771041,
+      "alpha_2L": 43.24204134820347,
+      "alpha_3": 43.24204134820358,
+      "alpha_2R": 43.24204134820347,
+      "alpha_BL": 43.24204152197081
+    },
+    "thresholds_Delta_inv_alpha": {
+      "alpha_1": 0.0,
+      "alpha_2L": 0.0,
+      "alpha_3": 0.0,
+      "alpha_2R": 0.0,
+      "alpha_BL": 0.0
+    },
+    "tau_p_eppi0_years": 8.107024075542678e+32
+  },
+  "how_to_read_residual": "lr_parity mode: g_L = g_R at M_I is imposed, the system is over-determined, and the residual is a genuine test of the multiplet content.",
+  "caveats": [
+    "tau_p is a tree-level dimensional estimate (no matrix elements, no operator running); M_X = M_GUT assumed",
+    "two-loop LR coefficients are gauge-only (no Yukawa contributions)",
+    "thresholds are one-loop leading-log step functions; no finite scheme constants",
+    "matching at M_I is tree-level (no W_R / Delta_R / nu_R / heavy-bidoublet thresholds)",
+    "M_GUT is the alpha_2L = alpha_3 crossing of the two-loop running (one-loop analytic locator used as seed), clamped to root_bracket_log10",
+    "quantum numbers and heavy masses are exactly those listed in the spectrum file"
+  ]
+}

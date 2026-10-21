@@ -52,12 +52,18 @@ def find_MGUT_by_alpha2_eq_alpha3(alpha2_inv_at_MI, alpha3_inv_at_MI, b2_above, 
         log10_mu = math.log10(mu)
     return mu, log10_mu
 
-def mismatch_metrics(alpha1_inv, alpha2_inv, alpha3_inv):
+def mismatch_metrics_n(alpha_invs):
     """
-    Return (max_frac_mismatch, spread, mean), where max_frac_mismatch compares each alpha^{-1} to the mean.
+    Return (max_frac_mismatch, spread, mean) for any number of inverse couplings
+    that are required to coincide at M_GUT; max_frac_mismatch compares each
+    alpha^{-1} to their mean.
     """
-    vals = [alpha1_inv, alpha2_inv, alpha3_inv]
-    mean = sum(vals)/3.0
+    vals = list(alpha_invs)
+    mean = sum(vals)/len(vals)
     spread = max(vals) - min(vals)
     max_frac = max(abs(v-mean)/mean for v in vals)
     return max_frac, spread, mean
+
+def mismatch_metrics(alpha1_inv, alpha2_inv, alpha3_inv):
+    """Three-coupling form of mismatch_metrics_n (alpha_1, alpha_2, alpha_3)."""
+    return mismatch_metrics_n([alpha1_inv, alpha2_inv, alpha3_inv])

@@ -1,0 +1,223 @@
+{
+  "mode": "spectrum_derived",
+  "spectrum_file": "C:\\Users\\ForumK2\\Documents\\GitHub\\GUT_v9_Release\\scripts\\spectra\\so10_10_126_thresholds.json",
+  "spectrum_name": "so10_10_126_thresholds",
+  "two_loop": true,
+  "rk_steps": 400,
+  "derived_lr_betas_one_loop": {
+    "SU3c": "-7",
+    "SU2L": "-3",
+    "SU2R": "-7/3",
+    "U1BL": "11/2"
+  },
+  "derived_lr_betas_two_loop": {
+    "SU3c": [
+      "-26",
+      "9/2",
+      "9/2",
+      "1/2"
+    ],
+    "SU2L": [
+      "12",
+      "8",
+      "3",
+      "3/2"
+    ],
+    "SU2R": [
+      "12",
+      "3",
+      "80/3",
+      "27/2"
+    ],
+    "U1BL": [
+      "4",
+      "9/2",
+      "81/2",
+      "61/2"
+    ]
+  },
+  "gut_threshold_multiplets": [
+    {
+      "name": "10_H: T",
+      "b": [
+        "1/6",
+        "0",
+        "0",
+        "1/6"
+      ],
+      "mass_GeV": 1e+16
+    },
+    {
+      "name": "10_H: Tbar",
+      "b": [
+        "1/6",
+        "0",
+        "0",
+        "1/6"
+      ],
+      "mass_GeV": 1e+16
+    },
+    {
+      "name": "126_H: (3,1,1)",
+      "b": [
+        "1/6",
+        "0",
+        "0",
+        "1/6"
+      ],
+      "mass_GeV": 1e+16
+    },
+    {
+      "name": "126_H: (3b,1,1)",
+      "b": [
+        "1/6",
+        "0",
+        "0",
+        "1/6"
+      ],
+      "mass_GeV": 1e+16
+    },
+    {
+      "name": "126_H: (6,1,3)",
+      "b": [
+        "5/2",
+        "0",
+        "4",
+        "1"
+      ],
+      "mass_GeV": 1e+16
+    },
+    {
+      "name": "126_H: (3,1,3)",
+      "b": [
+        "1/2",
+        "0",
+        "2",
+        "1/2"
+      ],
+      "mass_GeV": 1e+16
+    },
+    {
+      "name": "126_H: (6b,3,1)",
+      "b": [
+        "5/2",
+        "4",
+        "0",
+        "1"
+      ],
+      "mass_GeV": 1e+16
+    },
+    {
+      "name": "126_H: (3b,3,1)",
+      "b": [
+        "1/2",
+        "2",
+        "0",
+        "1/2"
+      ],
+      "mass_GeV": 1e+16
+    },
+    {
+      "name": "126_H: Delta_L",
+      "b": [
+        "0",
+        "2/3",
+        "0",
+        "3/2"
+      ],
+      "mass_GeV": 1e+16
+    },
+    {
+      "name": "126_H: (8,2,2)",
+      "b": [
+        "4",
+        "8/3",
+        "8/3",
+        "0"
+      ],
+      "mass_GeV": 1e+16
+    },
+    {
+      "name": "126_H: (1,2,2)",
+      "b": [
+        "0",
+        "1/3",
+        "1/3",
+        "0"
+      ],
+      "mass_GeV": 1e+16
+    },
+    {
+      "name": "126_H: (3,2,2)",
+      "b": [
+        "2/3",
+        "1",
+        "1",
+        "8/3"
+      ],
+      "mass_GeV": 1e+16
+    },
+    {
+      "name": "126_H: (3b,2,2)",
+      "b": [
+        "2/3",
+        "1",
+        "1",
+        "8/3"
+      ],
+      "mass_GeV": 1e+16
+    }
+  ],
+  "free_parameters": [],
+  "split_at_MI": "unification",
+  "scanned": {
+    "log10_MI": [
+      4.0,
+      15.0,
+      120
+    ]
+  },
+  "best": {
+    "log10_MI": 9.483741654357697,
+    "MI_GeV": 3046082449.3645988,
+    "log10_MGUT": 16.194244577256388,
+    "MGUT_GeV": 1.5640281927028442e+16,
+    "split_r_solved": 0.6734201266321358,
+    "split_mode": "unification",
+    "alpha_inv_at_MI": {
+      "alpha_1": 47.5650765763152,
+      "alpha_2L": 38.11465686289289,
+      "alpha_3": 28.08207067115594,
+      "alpha_2R": 39.837320054521925,
+      "alpha_BL": 59.15671135900511
+    },
+    "max_frac": 9.390398765276281e-10,
+    "max_frac_3": 1.043376559757086e-09,
+    "spread": 6.970741850409468e-08,
+    "alpha_GUT": 0.022451970544958302,
+    "alpha_inv_at_MGUT": {
+      "alpha_1": 44.539520423100726,
+      "alpha_2L": 44.539520353393435,
+      "alpha_3": 44.53952035339353,
+      "alpha_2R": 44.53952042310085,
+      "alpha_BL": 44.53952042310054
+    },
+    "thresholds_Delta_inv_alpha": {
+      "alpha_1": -0.7687913340266563,
+      "alpha_2L": -0.8304844657695364,
+      "alpha_3": -0.8542125933629515,
+      "alpha_2R": -0.7830282105827057,
+      "alpha_BL": -0.7474360191925826
+    },
+    "tau_p_eppi0_years": 1.8992816141146978e+36
+  },
+  "how_to_read_residual": "unification mode: the U(1) split is solved from alpha_2R = alpha_BL at M_GUT, so the system is exactly determined; a near-zero residual means a self-consistent solution exists in range and the outputs are the predicted M_I, M_GUT, alpha_GUT and alpha_2R(M_I).",
+  "caveats": [
+    "tau_p is a tree-level dimensional estimate (no matrix elements, no operator running); M_X = M_GUT assumed",
+    "two-loop LR coefficients are gauge-only (no Yukawa contributions)",
+    "thresholds are one-loop leading-log step functions; no finite scheme constants",
+    "matching at M_I is tree-level (no W_R / Delta_R / nu_R / heavy-bidoublet thresholds)",
+    "M_GUT is the alpha_2L = alpha_3 crossing of the two-loop running (one-loop analytic locator used as seed), clamped to root_bracket_log10",
+    "quantum numbers and heavy masses are exactly those listed in the spectrum file"
+  ]
+}

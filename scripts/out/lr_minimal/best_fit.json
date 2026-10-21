@@ -1,0 +1,92 @@
+{
+  "mode": "spectrum_derived",
+  "spectrum_file": "C:\\Users\\ForumK2\\Documents\\GitHub\\GUT_v9_Release\\scripts\\spectra\\lr_minimal.json",
+  "spectrum_name": "lr_minimal",
+  "two_loop": true,
+  "rk_steps": 400,
+  "derived_lr_betas_one_loop": {
+    "SU3c": "-7",
+    "SU2L": "-3",
+    "SU2R": "-7/3",
+    "U1BL": "11/2"
+  },
+  "derived_lr_betas_two_loop": {
+    "SU3c": [
+      "-26",
+      "9/2",
+      "9/2",
+      "1/2"
+    ],
+    "SU2L": [
+      "12",
+      "8",
+      "3",
+      "3/2"
+    ],
+    "SU2R": [
+      "12",
+      "3",
+      "80/3",
+      "27/2"
+    ],
+    "U1BL": [
+      "4",
+      "9/2",
+      "81/2",
+      "61/2"
+    ]
+  },
+  "gut_threshold_multiplets": [],
+  "free_parameters": [],
+  "split_at_MI": "unification",
+  "scanned": {
+    "log10_MI": [
+      4.0,
+      15.0,
+      120
+    ]
+  },
+  "best": {
+    "log10_MI": 9.453812196317031,
+    "MI_GeV": 2843231331.7823873,
+    "log10_MGUT": 16.17709081916428,
+    "MGUT_GeV": 1.50345633428413e+16,
+    "split_r_solved": 0.6726898211646742,
+    "split_mode": "unification",
+    "alpha_inv_at_MI": {
+      "alpha_1": 47.61045487191089,
+      "alpha_2L": 38.08044792217248,
+      "alpha_3": 28.004607439897352,
+      "alpha_2R": 39.853801264929494,
+      "alpha_BL": 59.245435282382985
+    },
+    "max_frac": 1.8008509624452282e-09,
+    "max_frac_3": 2.0009444360677085e-09,
+    "spread": 1.3611285964998387e-07,
+    "alpha_GUT": 0.02205096873120473,
+    "alpha_inv_at_MGUT": {
+      "alpha_1": 45.3494816209797,
+      "alpha_2L": 45.349481484866956,
+      "alpha_3": 45.34948148486706,
+      "alpha_2R": 45.349481620979816,
+      "alpha_BL": 45.34948162097953
+    },
+    "thresholds_Delta_inv_alpha": {
+      "alpha_1": 0.0,
+      "alpha_2L": 0.0,
+      "alpha_3": 0.0,
+      "alpha_2R": 0.0,
+      "alpha_BL": 0.0
+    },
+    "tau_p_eppi0_years": 1.681233025327184e+36
+  },
+  "how_to_read_residual": "unification mode: the U(1) split is solved from alpha_2R = alpha_BL at M_GUT, so the system is exactly determined; a near-zero residual means a self-consistent solution exists in range and the outputs are the predicted M_I, M_GUT, alpha_GUT and alpha_2R(M_I).",
+  "caveats": [
+    "tau_p is a tree-level dimensional estimate (no matrix elements, no operator running); M_X = M_GUT assumed",
+    "two-loop LR coefficients are gauge-only (no Yukawa contributions)",
+    "thresholds are one-loop leading-log step functions; no finite scheme constants",
+    "matching at M_I is tree-level (no W_R / Delta_R / nu_R / heavy-bidoublet thresholds)",
+    "M_GUT is the alpha_2L = alpha_3 crossing of the two-loop running (one-loop analytic locator used as seed), clamped to root_bracket_log10",
+    "quantum numbers and heavy masses are exactly those listed in the spectrum file"
+  ]
+}

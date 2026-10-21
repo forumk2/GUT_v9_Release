@@ -1,0 +1,4 @@
+tag,log10MGUT,log10MI,residual_pct,alphaGUT,tau
+lr_dparity_symmetric,15.3582,10.4940,0.00000,0.02313,8.107e+32
+lr_minimal,16.1771,9.4538,0.00000,0.02205,1.681e+36
+so10_10_126_thresholds,16.1942,9.4837,0.00000,0.02245,1.899e+36
