@@ -1,0 +1,33 @@
+[
+  {
+    "command": [
+      "-m",
+      "pytest",
+      "scripts/test_lr_betas.py",
+      "experiments/great_pumpkin_001/test_expedition.py",
+      "-q"
+    ],
+    "cwd": "root",
+    "exit_code": 0,
+    "stdout": "...............                                                          [100%]\n============================== warnings summary ===============================\n..\\..\\..\\Miniconda3\\Lib\\site-packages\\_pytest\\cacheprovider.py:475\n  C:\\Users\\ForumK2\\Miniconda3\\Lib\\site-packages\\_pytest\\cacheprovider.py:475: PytestCacheWarning: could not create cache path C:\\Users\\ForumK2\\Documents\\GitHub\\GUT_v9_Release\\.pytest_cache\\v\\cache\\nodeids: [WinError 5] Access is denied: 'C:\\\\Users\\\\ForumK2\\\\Documents\\\\GitHub\\\\GUT_v9_Release\\\\.pytest_cache\\\\v\\\\cache'\n    config.cache.set(\"cache/nodeids\", sorted(self.cached_nodeids))\n\n..\\..\\..\\Miniconda3\\Lib\\site-packages\\_pytest\\stepwise.py:51\n  C:\\Users\\ForumK2\\Miniconda3\\Lib\\site-packages\\_pytest\\stepwise.py:51: PytestCacheWarning: could not create cache path C:\\Users\\ForumK2\\Documents\\GitHub\\GUT_v9_Release\\.pytest_cache\\v\\cache\\stepwise: [WinError 5] Access is denied: 'C:\\\\Users\\\\ForumK2\\\\Documents\\\\GitHub\\\\GUT_v9_Release\\\\.pytest_cache\\\\v\\\\cache'\n    session.config.cache.set(STEPWISE_CACHE_DIR, [])\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n15 passed, 2 warnings in 1.29s\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "scripts/test_lr_betas.py"
+    ],
+    "cwd": "root",
+    "exit_code": 0,
+    "stdout": "all lr_betas checks passed\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "test_lr_betas.py"
+    ],
+    "cwd": "scripts",
+    "exit_code": 0,
+    "stdout": "all lr_betas checks passed\n",
+    "stderr": ""
+  }
+]

@@ -1,3 +1,7 @@
 __pycache__/
 *.pyc
 repo_dump.txt
+.expedition-tools/
+.pytest_cache/
+formal/great_pumpkin/.lake/
+experiments/great_pumpkin_001/scratch/

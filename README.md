@@ -26,9 +26,9 @@ For each trial M_I on a grid:
 
 1. Two-loop SM running M_Z → M_I (`two_loop_core.py`, RK4).
 2. Tree-level matching SM → LR at M_I (`rge_core.match_SM_to_LR_with_ratio`).
-3. M_GUT from the α_2L = α_3 crossing. The one-loop analytic locator in
-   `rge_core.py` seeds a secant refinement so that the crossing holds for the
-   two-loop, threshold-corrected couplings.
+3. M_GUT from the α_2L = α_3 crossing. A bracketed, safeguarded secant
+   requires a converged crossing of the two-loop, threshold-corrected
+   couplings. A boundary without a crossing is rejected.
 4. Two-loop LR running M_I → M_GUT with one- and two-loop gauge coefficients
    **derived from the spectrum** (`lr_betas.py`).
 5. One-loop leading-log thresholds at M_GUT from the spectrum's heavy
@@ -55,9 +55,10 @@ log10 M_I and reported.
   that a self-consistent solution exists inside the scanned range. The
   physical output is the **predicted** M_I, M_GUT, α_GUT and α_2R(M_I). If no
   solution exists in range, the residual is non-zero at a boundary.
-- In **lr_parity** mode the system is over-determined and the residual is a
-  genuine test of the content. For example, the minimal content below gives a
-  1.7% residual at best under g_L = g_R, i.e. it does not unify that way.
+- In **lr_parity** mode symmetry fixes the split. For L/R-symmetric content
+  and matching, equality persists under running, so this condition is
+  redundant. Only an independent added equality over-determines the system.
+  Imposing parity on asymmetric content is a different diagnostic assumption.
 
 ---
 
@@ -167,6 +168,14 @@ bash validate.sh               # reproducibility check
 Options: `--mi-min/--mi-max/--scan-points` (M_I grid), `--one-loop`,
 `--rk-steps` (default 400; results unchanged to 4 significant figures between
 200 and 3000), `--outdir`.
+
+## Expedition 001
+
+[The Great Pumpkin of 2026](docs/expeditions/great-pumpkin-001.md) independently
+audits both historical and current code, tests bounded SO(10) mass assumptions,
+and supplies Lean-checked one-loop constraints. Its experimental prototype is
+separate from this scanner. Fixed-spectrum scale solutions are conditional
+outputs, not evidence that the scalar vacuum or fermion sector is viable.
 
 ## License
 

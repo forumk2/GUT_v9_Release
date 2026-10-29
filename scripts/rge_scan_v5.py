@@ -8,8 +8,7 @@ Pipeline for each trial intermediate scale M_I on a grid:
 
   1. SM two-loop running M_Z -> M_I            (two_loop_core.run_segment_two_loop)
   2. tree-level matching SM -> LR at M_I        (rge_core.match_SM_to_LR_with_ratio)
-  3. locate M_GUT from alpha_2L = alpha_3: the one-loop analytic locator
-     (rge_core.find_MGUT_by_alpha2_eq_alpha3) seeds a secant refinement that
+  3. locate M_GUT from alpha_2L = alpha_3: a bracketed, safeguarded secant
      enforces the crossing with the two-loop, threshold-corrected couplings
                                                (Model.locate_MGUT)
   4. LR two-loop running M_I -> M_GUT with betas DERIVED from the spectrum
@@ -33,8 +32,8 @@ alpha_GUT, split) are exactly as many as the four unification conditions, so
 a near-zero residual means only that a self-consistent solution exists inside
 the scanned range; the physical content of the result is the *predicted*
 M_I, M_GUT, alpha_GUT and the implied alpha_2R(M_I).  In "lr_parity" mode the
-split is fixed by symmetry and the system is over-determined, so the residual
-is a genuine test of the multiplet content.
+split is fixed by symmetry. For symmetric spectra this condition is redundant
+under running; only independent extra conditions over-determine the system.
 
 WHAT REMAINS APPROXIMATE (see also README.md):
   * tau_p is a tree-level, dimensional estimate: no hadronic matrix element,
@@ -45,9 +44,8 @@ WHAT REMAINS APPROXIMATE (see also README.md):
     finite constants (e.g. the MS-bar gauge-boson term) are not included.
   * Matching at M_I is tree-level: no thresholds for W_R, Delta_R, nu_R or the
     heavy half of the bidoublet; one SM Higgs doublet is assumed light.
-  * M_GUT is located with the one-loop analytic crossing formula; the two-loop
-    running then does not make alpha_2L and alpha_3 meet exactly there, and
-    that mismatch is part of the reported residual (not hidden).
+  * M_GUT requires a converged crossing within the configured bracket;
+    a bracket boundary without a crossing is rejected.
   * The quantum numbers of every field are whatever the spectrum file says;
     see the spectrum 'description' for the assumptions made in the examples.
 """
@@ -60,7 +58,7 @@ import os
 import numpy as np
 
 from rge_core import (gut_normalized_alphas_at_MZ, match_SM_to_LR_with_ratio,
-                      find_MGUT_by_alpha2_eq_alpha3, mismatch_metrics, mismatch_metrics_n)
+                      mismatch_metrics, mismatch_metrics_n)
 from two_loop_core import run_segment_two_loop, run_segment_one_loop
 import lr_betas
 
@@ -177,7 +175,7 @@ class Model:
           "lr_parity": manifest left-right symmetry, g_L = g_R at M_I, so
               1/alpha_2R(M_I) = 1/alpha_2L(M_I) and 1/alpha_BL follows from
               1/alpha_1.  Nothing is solved for; the residual is then a genuine
-              over-determined test of the content.
+              test of the content only if it is an independent constraint.
         Returns None if no physical (positive-coupling) choice exists.
         """
         if self.split_mode == "lr_parity":
@@ -224,6 +222,8 @@ class Model:
             f1, full1 = f(r1)
             if f1 is None:
                 return None
+        if not math.isfinite(f1) or abs(f1) >= tol:
+            return None
         return r1, full1
 
     # -- stages 3-6 at fixed M_I ---------------------------------------------------
@@ -238,41 +238,49 @@ class Model:
                 "gap23": full[1] - full[0]}  # 1/alpha_2L - 1/alpha_3 at M_GUT
 
     def locate_MGUT(self, a1inv_MI, a2inv_MI, a3inv_MI, MI, tol=1e-10, max_iter=25):
-        """M_GUT from alpha_2L = alpha_3.  The existing one-loop analytic locator
-        (rge_core.find_MGUT_by_alpha2_eq_alpha3) gives the seed; a secant
-        iteration on log10(M_GUT) then enforces the crossing with the actual
-        (two-loop, threshold-corrected) couplings so that the locator's
-        one-loop error is not misreported as a physics residual.  The result is
-        clamped to the configured bracket; if clamped, the remaining gap shows
-        up in the residual."""
-        MGUT0, log0 = find_MGUT_by_alpha2_eq_alpha3(a2inv_MI, a3inv_MI, self.bLR_1[1], self.bLR_1[0], MI, self.bracket)
-        if MGUT0 is None:
-            return None
+        """Safeguarded secant crossing, with a sign bracket and residual check.
+
+        Unlike the pre-expedition implementation, an out-of-range analytic
+        seed does not become an alleged crossing at a clamped boundary. A
+        two-loop root may still exist when the one-loop seed is out of range.
+        No claim is made to enumerate tangential or multiple crossings.
+        """
         lo, hi = self.bracket
-        p0 = self._at_MGUT(a1inv_MI, a2inv_MI, a3inv_MI, MI, log0)
-        if p0 is None:
+        lo = max(lo, math.log10(MI))
+        if lo >= hi:
             return None
-        if abs(p0["gap23"]) < tol:
-            return p0
-        log1 = min(hi, max(lo, log0 + 0.02))
-        if log1 == log0:
-            log1 = log0 - 0.02
-        p1 = self._at_MGUT(a1inv_MI, a2inv_MI, a3inv_MI, MI, log1)
-        if p1 is None:
-            return p0
-        for _ in range(max_iter):
-            if abs(p1["gap23"]) < tol or p1["gap23"] == p0["gap23"]:
-                break
-            log2 = log1 - p1["gap23"] * (log1 - log0) / (p1["gap23"] - p0["gap23"])
-            log2 = min(hi, max(lo, log2))
-            if log2 == log1:
-                break
-            p2 = self._at_MGUT(a1inv_MI, a2inv_MI, a3inv_MI, MI, log2)
-            if p2 is None:
-                break
-            log0, p0 = log1, p1
-            log1, p1 = log2, p2
-        return p1 if abs(p1["gap23"]) <= abs(p0["gap23"]) else p0
+
+        def at(x):
+            p = self._at_MGUT(a1inv_MI, a2inv_MI, a3inv_MI, MI, x)
+            if p is None or not np.isfinite(p["full"]).all() or np.min(p["full"]) <= 0:
+                return None
+            return p
+
+        left, right = at(lo), at(hi)
+        if left is None or right is None:
+            return None
+        for p in (left, right):
+            if abs(p["gap23"]) < tol:
+                return p
+        if left["gap23"] * right["gap23"] > 0:
+            return None
+        # Interpolation is fast for smooth gauge running; every fifth step
+        # bisects so stagnation cannot masquerade as convergence.
+        for iteration in range(max(60, max_iter)):
+            fl, fr = left["gap23"], right["gap23"]
+            x = (lo + hi) / 2 if iteration % 5 == 4 else hi - fr*(hi-lo)/(fr-fl)
+            if not lo < x < hi:
+                x = (lo + hi) / 2
+            p = at(x)
+            if p is None:
+                return None
+            if abs(p["gap23"]) < tol:
+                return p
+            if fl*p["gap23"] > 0:
+                lo, left = x, p
+            else:
+                hi, right = x, p
+        return None
 
     # -- one trial M_I -------------------------------------------------------
     def evaluate(self, logMI):
@@ -384,15 +392,15 @@ def run_scan(cfg, spec, args):
             "determined; a near-zero residual means a self-consistent solution exists in range and the outputs are the "
             "predicted M_I, M_GUT, alpha_GUT and alpha_2R(M_I)."
             if model.split_mode == "unification" else
-            "lr_parity mode: g_L = g_R at M_I is imposed, the system is over-determined, and the residual is a genuine "
-            "test of the multiplet content."
+            "lr_parity mode: g_L = g_R at M_I is imposed. For L/R-symmetric spectra and matching, equality "
+            "persists under running and is redundant; over-determination occurs only when it adds an independent condition."
         ),
         "caveats": [
             "tau_p is a tree-level dimensional estimate (no matrix elements, no operator running); M_X = M_GUT assumed",
             "two-loop LR coefficients are gauge-only (no Yukawa contributions)",
             "thresholds are one-loop leading-log step functions; no finite scheme constants",
             "matching at M_I is tree-level (no W_R / Delta_R / nu_R / heavy-bidoublet thresholds)",
-            "M_GUT is the alpha_2L = alpha_3 crossing of the two-loop running (one-loop analytic locator used as seed), clamped to root_bracket_log10",
+            "M_GUT requires a converged alpha_2L = alpha_3 crossing inside root_bracket_log10; absent crossings are rejected",
             "quantum numbers and heavy masses are exactly those listed in the spectrum file",
         ],
     }

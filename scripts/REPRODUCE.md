@@ -27,6 +27,11 @@ the reference numbers below. It does not validate any physics claim.
 
 3. **Summary** saved to `results/validate/<timestamp>/`.
 
+Expedition 001 added `check_references.py`: the script now fails when a
+reference scale or coupling drifts beyond its printed rounding tolerance,
+or the residual exceeds 1e-6. Previously it ran the scans and printed a
+summary but did not compare their numbers to the references.
+
 ## What it does not check
 
 - Whether the spectrum files describe a realistic model.

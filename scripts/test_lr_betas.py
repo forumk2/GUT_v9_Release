@@ -10,6 +10,7 @@ Consistency checks for lr_betas.py.  Run:  python test_lr_betas.py
    a heavy multiplet below M_GUT lowers 1/alpha_i by (b_i^H/2pi) ln(M_GUT/M_H).
 """
 from fractions import Fraction as Fr
+from pathlib import Path
 import math
 import numpy as np
 
@@ -35,7 +36,7 @@ def test_sm():
 
 
 def test_lr_minimal():
-    spec = lb.load_spectrum("spectra/lr_minimal.json")
+    spec = lb.load_spectrum(Path(__file__).resolve().parent / "spectra/lr_minimal.json")
     b, bij = lb.lr_stage_betas(spec)
     assert b == [Fr(-7), Fr(-3), Fr(-7, 3), Fr(11, 2)], b
     # Fermion-only B-L coefficient is 4 (the old config default).

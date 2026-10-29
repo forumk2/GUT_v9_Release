@@ -7,7 +7,7 @@ export PYTHONIOENCODING=utf-8
 cd "$(dirname "$0")"
 
 TIMESTAMP="$(date +%Y%m%d_%H%M%S || echo now)"
-OUTDIR="results/validate/${TIMESTAMP}"
+OUTDIR="${VALIDATE_OUTDIR:-results/validate/${TIMESTAMP}}"
 mkdir -p "${OUTDIR}"
 echo "=== VALIDATE: spectrum-derived scan reproducibility ==="
 echo "Results will be saved to: ${OUTDIR}"
@@ -23,6 +23,8 @@ for spec in lr_minimal so10_10_126_thresholds lr_dparity_symmetric; do
   python rge_scan_v5.py --spectrum "spectra/${spec}.json" --outdir "${OUTDIR}/${spec}" | tee "${OUTDIR}/${spec}.log"
   echo
 done
+
+python check_references.py "${OUTDIR}"
 
 echo "[3/3] Summary"
 {
