@@ -1,10 +1,16 @@
-
 #!/usr/bin/env bash
+# Single-spectrum runs.  No slope coefficients, no threshold shifts, no split
+# ratio on the command line: everything comes from the spectrum file.
 set -euo pipefail
 export PYTHONIOENCODING=utf-8
+cd "$(dirname "$0")"
 
-# A) Ease b3, harden b2’s, keep the “good” threshold pattern
-python rge_scan_v5.py --two-loop --multiplets spectrum_balanced_v8.json   --b3LR -5.8 --b2L -1.6 --b2R -1.6 --bBL 6.5 --split-r 0.9   --dalpha1 0.001 --dalpha2 0.001 --dalpha3 -0.001
+# A) Minimal LR content (fermions + bidoublet + Delta_R), no GUT thresholds.
+python rge_scan_v5.py --spectrum spectra/lr_minimal.json --outdir out/lr_minimal
 
-# B) Slightly stronger variant (may push MGUT further)
-python rge_scan_v5.py --two-loop --multiplets spectrum_balanced_v8.json   --b3LR -5.8 --b2L -1.7 --b2R -1.7 --bBL 6.7 --split-r 1.0   --dalpha1 0.001 --dalpha2 0.001 --dalpha3 -0.001
+# B) Same LR content with the remaining 10_H + 126_H components as GUT-scale
+#    thresholds at an assumed common mass (see the file's description).
+python rge_scan_v5.py --spectrum spectra/so10_10_126_thresholds.json --outdir out/so10_10_126_thresholds
+
+# C) Manifestly left-right symmetric content with g_L = g_R imposed at M_I.
+python rge_scan_v5.py --spectrum spectra/lr_dparity_symmetric.json --outdir out/lr_dparity_symmetric

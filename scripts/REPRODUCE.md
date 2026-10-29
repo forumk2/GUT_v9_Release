@@ -1,40 +1,50 @@
-# REPRODUCE: Scan Reproducibility Check
+# REPRODUCE: Reproducibility Check
 
-This script checks that the scanner produces the same output for the same parameter inputs across runs. It is a reproducibility check, not a physics validator. It does not validate any physics claims.
+`validate.sh` checks that the code is numerically consistent: the beta
+derivation reproduces known coefficients, and the example spectra reproduce
+the reference numbers below. It does not validate any physics claim.
 
 ## What it checks
 
-1. **Reproduce two reference parameter points** and archive logs and JSON output:
-   - Point A: `b3=-5.8, b2L=b2R=-1.6, bBL=6.5, split_r=0.9, Δα=(+0.001, +0.001, -0.001)`
-     - Expected output: residual ≈ 0.06%, τ\_p ≈ 5.5×10³⁵ yr (tree-level estimate)
-   - Point B: `b3=-5.8, b2L=b2R=-1.7, bBL=6.7, split_r=1.0, Δα=(+0.001, +0.001, -0.001)`
-     - Expected output: residual ≈ 0.05%, τ\_p ≈ 1.7×10³⁶ yr (tree-level estimate)
+1. **`test_lr_betas.py`** — the generic beta routine must give the textbook
+   SM one-loop vector (41/10, −19/6, −7) and the full two-loop matrix exactly
+   as rationals; the minimal LR content must give (−7, −3, −7/3, 11/2); the
+   threshold routine must have the leading-log sign and normalisation.
 
-   These Δα values are free parameters passed as inputs; the check verifies numerical consistency, not physical correctness.
+2. **Example spectra** (two-loop, default `config.json`, default 400 RK4
+   steps, 120-point M_I grid on log10 M_I ∈ [4, 15]):
 
-2. **If `out/v9/scan_v9_summary.csv` is present**:
-   - Print top-10 lowest-residual points (residual ≤ 0.2%)
-   - Run a τ scaling consistency check relative to Point A
+   | spectrum | log10 M_I | log10 M_GUT | α_GUT | residual | τ_p |
+   |---|---|---|---|---|---|
+   | lr_minimal | 9.454 | 16.177 | 0.02205 | 0.0000% | 1.68 × 10³⁶ yr |
+   | so10_10_126_thresholds | 9.484 | 16.194 | 0.02245 | 0.0000% | 1.90 × 10³⁶ yr |
+   | lr_dparity_symmetric | 10.494 | 15.358 | 0.02313 | 0.0000% | 8.11 × 10³² yr |
 
-3. **Save a summary** to `results/validate/`.
+   These numbers are outputs of the listed multiplet content; nothing was
+   tuned to produce them. The zero residuals are the exactly-determined case
+   explained in README.md, not evidence of anything beyond the existence of a
+   solution.
+
+3. **Summary** saved to `results/validate/<timestamp>/`.
+
+Expedition 001 added `check_references.py`: the script now fails when a
+reference scale or coupling drifts beyond its printed rounding tolerance,
+or the residual exceeds 1e-6. Previously it ran the scans and printed a
+summary but did not compare their numbers to the references.
 
 ## What it does not check
 
-- Whether the threshold corrections (Δα) are physically motivated
-- Whether the slope coefficients correspond to a specific GUT model
-- Whether the τ\_p estimates are accurate (they are tree-level only)
-- Whether a "low residual" point constitutes unification in any physical sense
+- Whether the spectrum files describe a realistic model.
+- Whether the assumed heavy masses in `so10_10_126_thresholds.json` are right.
+- Whether τ_p is accurate (tree-level only).
+- Anything about Yukawa effects, M_I thresholds, or finite matching terms.
 
-## Quick start
-
-From the repo root (where `rge_scan_v5.py` lives):
+## Run
 
 ```bash
-bash scripts/validate.sh
+cd scripts
+bash validate.sh
 ```
 
-Output is archived under `results/validate/<timestamp>/`.
-
-## Interpreting results
-
-A passing run means the scanner is numerically consistent: the same inputs produce the same outputs. It does not mean the scan has produced a physics prediction. The reference points (A and B) are anchors for reproducibility, not claimed results.
+`results/validate/20250909_203538/` predates this refactor and records the
+retired knob-based mode; it is kept only as history.

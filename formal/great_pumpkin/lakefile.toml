@@ -1,0 +1,6 @@
+name = "great_pumpkin"
+version = "0.1.0"
+defaultTargets = ["GreatPumpkin"]
+
+[[lean_lib]]
+name = "GreatPumpkin"

@@ -1,0 +1,57 @@
+Spectrum: so10_10_126_thresholds  (group LR)
+  Same LR-stage content as lr_minimal, plus GUT-scale threshold fields: the components of a complex 10_H and a complex 126_H of SO(10) that are not part of the LR stage (Phi and Delta_R are the light remnants). ASSUMPTION: all listed heavy components sit at one common mass of 1e16 GeV; this is an illustrative choice, not a fitted one. The 30 SO(10)/LR gauge bosons are assumed degenerate with M_GUT (zero log) consistent with the M_X = M_GUT assumption in the proton-lifetime estimator.
+  LR-stage fields (massless between M_I and M_GUT):
+    Q_L            rep=[3, 2, 1, '1/3'] type=weyl copies=3  -> b: SU3c=2, SU2L=3, SU2R=0, U1BL=1/2
+    Q_R^c          rep=[3, 1, 2, '-1/3'] type=weyl copies=3  -> b: SU3c=2, SU2L=0, SU2R=3, U1BL=1/2
+    L_L            rep=[1, 2, 1, '-1'] type=weyl copies=3  -> b: SU3c=0, SU2L=1, SU2R=0, U1BL=3/2
+    L_R^c          rep=[1, 1, 2, '1'] type=weyl copies=3  -> b: SU3c=0, SU2L=0, SU2R=1, U1BL=3/2
+    Phi            rep=[1, 2, 2, '0'] type=complex copies=1  -> b: SU3c=0, SU2L=1/3, SU2R=1/3, U1BL=0
+    Delta_R        rep=[1, 1, 3, '2'] type=complex copies=1  -> b: SU3c=0, SU2L=0, SU2R=2/3, U1BL=3/2
+  Derived LR-stage coefficients (gauge-only two-loop, no Yukawas):
+  one-loop b_i:
+    SU3c :       -7  (-7.000000)
+    SU2L :       -3  (-3.000000)
+    SU2R :     -7/3  (-2.333333)
+    U1BL :     11/2  (+5.500000)
+  two-loop b_ij (rows i, columns j):
+                   SU3c        SU2L        SU2R        U1BL
+    SU3c            -26         9/2         9/2         1/2
+    SU2L             12           8           3         3/2
+    SU2R             12           3        80/3        27/2
+    U1BL              4         9/2        81/2        61/2
+  GUT-scale threshold fields (leading-log, one-loop):
+    10_H: T        rep=[3, 1, 1, '-2/3'] type=complex copies=1 M=1.000e+16 GeV -> b^H: SU3c=1/6, SU2L=0, SU2R=0, U1BL=1/6
+    10_H: Tbar     rep=[3, 1, 1, '2/3'] type=complex copies=1 M=1.000e+16 GeV -> b^H: SU3c=1/6, SU2L=0, SU2R=0, U1BL=1/6
+    126_H: (3,1,1) rep=[3, 1, 1, '-2/3'] type=complex copies=1 M=1.000e+16 GeV -> b^H: SU3c=1/6, SU2L=0, SU2R=0, U1BL=1/6
+    126_H: (3b,1,1) rep=[3, 1, 1, '2/3'] type=complex copies=1 M=1.000e+16 GeV -> b^H: SU3c=1/6, SU2L=0, SU2R=0, U1BL=1/6
+    126_H: (6,1,3) rep=[6, 1, 3, '2/3'] type=complex copies=1 M=1.000e+16 GeV -> b^H: SU3c=5/2, SU2L=0, SU2R=4, U1BL=1
+    126_H: (3,1,3) rep=[3, 1, 3, '-2/3'] type=complex copies=1 M=1.000e+16 GeV -> b^H: SU3c=1/2, SU2L=0, SU2R=2, U1BL=1/2
+    126_H: (6b,3,1) rep=[6, 3, 1, '-2/3'] type=complex copies=1 M=1.000e+16 GeV -> b^H: SU3c=5/2, SU2L=4, SU2R=0, U1BL=1
+    126_H: (3b,3,1) rep=[3, 3, 1, '2/3'] type=complex copies=1 M=1.000e+16 GeV -> b^H: SU3c=1/2, SU2L=2, SU2R=0, U1BL=1/2
+    126_H: Delta_L rep=[1, 3, 1, '2'] type=complex copies=1 M=1.000e+16 GeV -> b^H: SU3c=0, SU2L=2/3, SU2R=0, U1BL=3/2
+    126_H: (8,2,2) rep=[8, 2, 2, '0'] type=complex copies=1 M=1.000e+16 GeV -> b^H: SU3c=4, SU2L=8/3, SU2R=8/3, U1BL=0
+    126_H: (1,2,2) rep=[1, 2, 2, '0'] type=complex copies=1 M=1.000e+16 GeV -> b^H: SU3c=0, SU2L=1/3, SU2R=1/3, U1BL=0
+    126_H: (3,2,2) rep=[3, 2, 2, '4/3'] type=complex copies=1 M=1.000e+16 GeV -> b^H: SU3c=2/3, SU2L=1, SU2R=1, U1BL=8/3
+    126_H: (3b,2,2) rep=[3, 2, 2, '-4/3'] type=complex copies=1 M=1.000e+16 GeV -> b^H: SU3c=2/3, SU2L=1, SU2R=1, U1BL=8/3
+
+=== Scan complete (v5, spectrum-derived mode) ===
+Best M_I   ≈ 10^9.484 GeV
+Best M_GUT ≈ 10^16.194 GeV
+Residual mismatch @ M_GUT: 0.0000%
+alpha_GUT ≈ 0.02245   (1/alpha_GUT ≈ 44.540)
+tau_p (p→ e^+π^0) ≈ 1.90e+36 years  [tree-level estimate]
+split 1/alpha_2R : 1/alpha_BL at M_I = 0.67342  (solved from alpha_2R = alpha_BL at M_GUT)
+1/alpha at M_I  : alpha_1=47.5651, alpha_2L=38.1147, alpha_3=28.0821, alpha_2R=39.8373, alpha_BL=59.1567
+1/alpha at M_GUT (thresholds applied): alpha_1=44.5395, alpha_2L=44.5395, alpha_3=44.5395, alpha_2R=44.5395, alpha_BL=44.5395
+threshold Delta(1/alpha) from spectrum: alpha_1=-0.7688, alpha_2L=-0.8305, alpha_3=-0.8542, alpha_2R=-0.7830, alpha_BL=-0.7474
+Seesaw mν for y=1.00: ~9.939e+03 eV (M_R ≈ M_I)
+Seesaw mν for y=0.30: ~8.945e+02 eV (M_R ≈ M_I)
+Seesaw mν for y=0.10: ~9.939e+01 eV (M_R ≈ M_I)
+Seesaw mν for y=0.03: ~8.945e+00 eV (M_R ≈ M_I)
+
+Free parameters tuned in this run: none.
+Reading the residual: unification mode: the U(1) split is solved from alpha_2R = alpha_BL at M_GUT, so the system is exactly determined; a near-zero residual means a self-consistent solution exists in range and the outputs are the predicted M_I, M_GUT, alpha_GUT and alpha_2R(M_I).
+Approximations: tau_p is a tree-level dimensional estimate (no matrix elements, no operator running); M_X = M_GUT assumed; two-loop LR coefficients are gauge-only (no Yukawa contributions); thresholds are one-loop leading-log step functions; no finite scheme constants; matching at M_I is tree-level (no W_R / Delta_R / nu_R / heavy-bidoublet thresholds); M_GUT is the alpha_2L = alpha_3 crossing of the two-loop running (one-loop analytic locator used as seed), clamped to root_bracket_log10; quantum numbers and heavy masses are exactly those listed in the spectrum file
+
+CSV written to : results/validate/20261020_215318/so10_10_126_thresholds\scan.csv
+Summary JSON   : results/validate/20261020_215318/so10_10_126_thresholds\best_fit.json

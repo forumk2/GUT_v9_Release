@@ -1,0 +1,30 @@
+# Validation summary (20261020_215318) -- numerical reproducibility only
+
+lr_minimal:
+Best M_I   ≈ 10^9.454 GeV
+Best M_GUT ≈ 10^16.177 GeV
+Residual mismatch @ M_GUT: 0.0000%
+alpha_GUT ≈ 0.02205   (1/alpha_GUT ≈ 45.349)
+tau_p (p→ e^+π^0) ≈ 1.68e+36 years  [tree-level estimate]
+split 1/alpha_2R : 1/alpha_BL at M_I = 0.67269  (solved from alpha_2R = alpha_BL at M_GUT)
+Reading the residual: unification mode: the U(1) split is solved from alpha_2R = alpha_BL at M_GUT, so the system is exactly determined; a near-zero residual means a self-consistent solution exists in range and the outputs are the predicted M_I, M_GUT, alpha_GUT and alpha_2R(M_I).
+Approximations: tau_p is a tree-level dimensional estimate (no matrix elements, no operator running); M_X = M_GUT assumed; two-loop LR coefficients are gauge-only (no Yukawa contributions); thresholds are one-loop leading-log step functions; no finite scheme constants; matching at M_I is tree-level (no W_R / Delta_R / nu_R / heavy-bidoublet thresholds); M_GUT is the alpha_2L = alpha_3 crossing of the two-loop running (one-loop analytic locator used as seed), clamped to root_bracket_log10; quantum numbers and heavy masses are exactly those listed in the spectrum file
+
+so10_10_126_thresholds:
+Best M_I   ≈ 10^9.484 GeV
+Best M_GUT ≈ 10^16.194 GeV
+Residual mismatch @ M_GUT: 0.0000%
+alpha_GUT ≈ 0.02245   (1/alpha_GUT ≈ 44.540)
+tau_p (p→ e^+π^0) ≈ 1.90e+36 years  [tree-level estimate]
+split 1/alpha_2R : 1/alpha_BL at M_I = 0.67342  (solved from alpha_2R = alpha_BL at M_GUT)
+Reading the residual: unification mode: the U(1) split is solved from alpha_2R = alpha_BL at M_GUT, so the system is exactly determined; a near-zero residual means a self-consistent solution exists in range and the outputs are the predicted M_I, M_GUT, alpha_GUT and alpha_2R(M_I).
+Approximations: tau_p is a tree-level dimensional estimate (no matrix elements, no operator running); M_X = M_GUT assumed; two-loop LR coefficients are gauge-only (no Yukawa contributions); thresholds are one-loop leading-log step functions; no finite scheme constants; matching at M_I is tree-level (no W_R / Delta_R / nu_R / heavy-bidoublet thresholds); M_GUT is the alpha_2L = alpha_3 crossing of the two-loop running (one-loop analytic locator used as seed), clamped to root_bracket_log10; quantum numbers and heavy masses are exactly those listed in the spectrum file
+
+lr_dparity_symmetric:
+Best M_I   ≈ 10^10.494 GeV
+Best M_GUT ≈ 10^15.358 GeV
+Residual mismatch @ M_GUT: 0.0000%
+alpha_GUT ≈ 0.02313   (1/alpha_GUT ≈ 43.242)
+tau_p (p→ e^+π^0) ≈ 8.11e+32 years  [tree-level estimate]
+split 1/alpha_2R : 1/alpha_BL at M_I = 0.69901  (fixed by g_L = g_R at M_I)
+Approximations: tau_p is a tree-level dimensional estimate (no matrix elements, no operator running); M_X = M_GUT assumed; two-loop LR coefficients are gauge-only (no Yukawa contributions); thresholds are one-loop leading-log step functions; no finite scheme constants; matching at M_I is tree-level (no W_R / Delta_R / nu_R / heavy-bidoublet thresholds); M_GUT is the alpha_2L = alpha_3 crossing of the two-loop running (one-loop analytic locator used as seed), clamped to root_bracket_log10; quantum numbers and heavy masses are exactly those listed in the spectrum file

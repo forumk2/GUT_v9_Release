@@ -1,0 +1,15 @@
+{
+  "format": "lr_spectrum_v1",
+  "name": "lr_minimal",
+  "description": "Minimal left-right model between M_I and M_GUT: three generations of LR fermions (nu_R included), one complex bidoublet Phi(1,2,2,0), one complex right-handed triplet Delta_R(1,1,3,2). No GUT-scale threshold fields: every heavy state is assumed degenerate with M_GUT, so all threshold logs vanish.",
+  "group": "LR",
+  "lr_stage": [
+    {"name": "Q_L",     "rep": [3, 2, 1, "1/3"],  "type": "weyl",    "copies": 3},
+    {"name": "Q_R^c",   "rep": [3, 1, 2, "-1/3"], "type": "weyl",    "copies": 3},
+    {"name": "L_L",     "rep": [1, 2, 1, "-1"],   "type": "weyl",    "copies": 3},
+    {"name": "L_R^c",   "rep": [1, 1, 2, "1"],    "type": "weyl",    "copies": 3},
+    {"name": "Phi",     "rep": [1, 2, 2, "0"],    "type": "complex", "copies": 1},
+    {"name": "Delta_R", "rep": [1, 1, 3, "2"],    "type": "complex", "copies": 1}
+  ],
+  "gut_thresholds": []
+}

@@ -1,0 +1,44 @@
+Spectrum: lr_minimal  (group LR)
+  Minimal left-right model between M_I and M_GUT: three generations of LR fermions (nu_R included), one complex bidoublet Phi(1,2,2,0), one complex right-handed triplet Delta_R(1,1,3,2). No GUT-scale threshold fields: every heavy state is assumed degenerate with M_GUT, so all threshold logs vanish.
+  LR-stage fields (massless between M_I and M_GUT):
+    Q_L            rep=[3, 2, 1, '1/3'] type=weyl copies=3  -> b: SU3c=2, SU2L=3, SU2R=0, U1BL=1/2
+    Q_R^c          rep=[3, 1, 2, '-1/3'] type=weyl copies=3  -> b: SU3c=2, SU2L=0, SU2R=3, U1BL=1/2
+    L_L            rep=[1, 2, 1, '-1'] type=weyl copies=3  -> b: SU3c=0, SU2L=1, SU2R=0, U1BL=3/2
+    L_R^c          rep=[1, 1, 2, '1'] type=weyl copies=3  -> b: SU3c=0, SU2L=0, SU2R=1, U1BL=3/2
+    Phi            rep=[1, 2, 2, '0'] type=complex copies=1  -> b: SU3c=0, SU2L=1/3, SU2R=1/3, U1BL=0
+    Delta_R        rep=[1, 1, 3, '2'] type=complex copies=1  -> b: SU3c=0, SU2L=0, SU2R=2/3, U1BL=3/2
+  Derived LR-stage coefficients (gauge-only two-loop, no Yukawas):
+  one-loop b_i:
+    SU3c :       -7  (-7.000000)
+    SU2L :       -3  (-3.000000)
+    SU2R :     -7/3  (-2.333333)
+    U1BL :     11/2  (+5.500000)
+  two-loop b_ij (rows i, columns j):
+                   SU3c        SU2L        SU2R        U1BL
+    SU3c            -26         9/2         9/2         1/2
+    SU2L             12           8           3         3/2
+    SU2R             12           3        80/3        27/2
+    U1BL              4         9/2        81/2        61/2
+  GUT-scale threshold fields: none (all heavy states assumed degenerate with M_GUT)
+
+=== Scan complete (v5, spectrum-derived mode) ===
+Best M_I   ≈ 10^9.454 GeV
+Best M_GUT ≈ 10^16.177 GeV
+Residual mismatch @ M_GUT: 0.0000%
+alpha_GUT ≈ 0.02205   (1/alpha_GUT ≈ 45.349)
+tau_p (p→ e^+π^0) ≈ 1.68e+36 years  [tree-level estimate]
+split 1/alpha_2R : 1/alpha_BL at M_I = 0.67269  (solved from alpha_2R = alpha_BL at M_GUT)
+1/alpha at M_I  : alpha_1=47.6105, alpha_2L=38.0804, alpha_3=28.0046, alpha_2R=39.8538, alpha_BL=59.2454
+1/alpha at M_GUT (thresholds applied): alpha_1=45.3495, alpha_2L=45.3495, alpha_3=45.3495, alpha_2R=45.3495, alpha_BL=45.3495
+threshold Delta(1/alpha) from spectrum: alpha_1=+0.0000, alpha_2L=+0.0000, alpha_3=+0.0000, alpha_2R=+0.0000, alpha_BL=+0.0000
+Seesaw mν for y=1.00: ~1.065e+04 eV (M_R ≈ M_I)
+Seesaw mν for y=0.30: ~9.584e+02 eV (M_R ≈ M_I)
+Seesaw mν for y=0.10: ~1.065e+02 eV (M_R ≈ M_I)
+Seesaw mν for y=0.03: ~9.584e+00 eV (M_R ≈ M_I)
+
+Free parameters tuned in this run: none.
+Reading the residual: unification mode: the U(1) split is solved from alpha_2R = alpha_BL at M_GUT, so the system is exactly determined; a near-zero residual means a self-consistent solution exists in range and the outputs are the predicted M_I, M_GUT, alpha_GUT and alpha_2R(M_I).
+Approximations: tau_p is a tree-level dimensional estimate (no matrix elements, no operator running); M_X = M_GUT assumed; two-loop LR coefficients are gauge-only (no Yukawa contributions); thresholds are one-loop leading-log step functions; no finite scheme constants; matching at M_I is tree-level (no W_R / Delta_R / nu_R / heavy-bidoublet thresholds); M_GUT is the alpha_2L = alpha_3 crossing of the two-loop running (one-loop analytic locator used as seed), clamped to root_bracket_log10; quantum numbers and heavy masses are exactly those listed in the spectrum file
+
+CSV written to : results/validate/20261020_215318/lr_minimal\scan.csv
+Summary JSON   : results/validate/20261020_215318/lr_minimal\best_fit.json

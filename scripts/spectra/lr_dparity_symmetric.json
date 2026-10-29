@@ -1,0 +1,17 @@
+{
+  "format": "lr_spectrum_v1",
+  "name": "lr_dparity_symmetric",
+  "description": "Manifestly left-right symmetric model between M_I and M_GUT (unbroken D-parity): three generations of LR fermions, one complex bidoublet Phi(1,2,2,0), and BOTH triplets Delta_L(1,3,1,2) and Delta_R(1,1,3,2) light. g_L = g_R is imposed at M_I (split_at_MI = lr_parity), and equality is preserved by the symmetric beta functions; it is a redundant condition, not an extra independent test. No GUT-scale threshold fields.",
+  "group": "LR",
+  "split_at_MI": "lr_parity",
+  "lr_stage": [
+    {"name": "Q_L",     "rep": [3, 2, 1, "1/3"],  "type": "weyl",    "copies": 3},
+    {"name": "Q_R^c",   "rep": [3, 1, 2, "-1/3"], "type": "weyl",    "copies": 3},
+    {"name": "L_L",     "rep": [1, 2, 1, "-1"],   "type": "weyl",    "copies": 3},
+    {"name": "L_R^c",   "rep": [1, 1, 2, "1"],    "type": "weyl",    "copies": 3},
+    {"name": "Phi",     "rep": [1, 2, 2, "0"],    "type": "complex", "copies": 1},
+    {"name": "Delta_L", "rep": [1, 3, 1, "2"],    "type": "complex", "copies": 1},
+    {"name": "Delta_R", "rep": [1, 1, 3, "2"],    "type": "complex", "copies": 1}
+  ],
+  "gut_thresholds": []
+}

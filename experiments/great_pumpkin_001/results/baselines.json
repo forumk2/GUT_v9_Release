@@ -1,0 +1,521 @@
+{
+  "historical": {
+    "revision": "8d44f8c5ca6eed3a83572471dac6f9229743ec67^",
+    "source_sha256": {
+      "rge_core.py": "24e89a571afa59f2ed3d5c991b2a66e09a07dad40d5b159c784bac5cae40afcb",
+      "two_loop_core.py": "a147d56b46a01c7c8b1dd3120c2749b08235cf7b6b527404abac251e558ed5d2",
+      "rge_scan_v5.py": "c3d4034741ceba958038257dc3180fdcc6ccc8e882024066952d4e52d3dafd77",
+      "auto_tune_fast.py": "84ebf298923d7b88b495ec30d90319889c26306e690916731b8ba4579c89c5f0",
+      "config.json": "f0978924aea204e556589b01b87d2270b7426847e18aef7bb55ef9eb6eca9178",
+      "spectrum_balanced_v8.json": "6d81aa1ad017f3f4d8a55afaf4f1d919fd858dad8ec6ea87de0ced27818abb38"
+    },
+    "points": [
+      {
+        "reference": {
+          "log10_MI": 10.563025210084033,
+          "MI_GeV": 36561601440.85194,
+          "log10_MGUT": 16.069169434568828,
+          "MGUT_GeV": 1.1726527721520484e+16,
+          "max_frac": 0.0005773605271884263,
+          "alpha_GUT": 0.023461328137588118,
+          "tau_p_eppi0_years": 5.496579749025049e+35,
+          "params": {
+            "b3_LR": -5.8,
+            "b2L_LR": -1.6,
+            "b2R_LR": -1.6,
+            "bBL_LR": 6.5,
+            "split_r": 0.9,
+            "dalpha1": 0.001,
+            "dalpha2": 0.001,
+            "dalpha3": -0.001,
+            "two_loop": true,
+            "multiplets_used": true
+          }
+        },
+        "reproduced": {
+          "log10_MI": 10.563025210084033,
+          "log10_MGUT": 16.069169434568828,
+          "alpha_GUT": 0.023461328137588118,
+          "mismatch": 0.0005773605271884263,
+          "tau": 5.496579749025049e+35,
+          "MGUT_GeV": 1.1726527721520484e+16
+        },
+        "split_r_2": {
+          "log10_MI": 10.563025210084033,
+          "log10_MGUT": 16.069169434568828,
+          "alpha_GUT": 0.023461328137588087,
+          "mismatch": 0.0005773605271870919,
+          "tau": 5.496579749025064e+35,
+          "MGUT_GeV": 1.1726527721520484e+16
+        },
+        "raw_LR_inverse_at_GUT": [
+          42.57749553293143,
+          42.57749553293143,
+          47.203243436045895,
+          35.74494498203154
+        ],
+        "raw_R_minus_BL": 11.458298454014354
+      },
+      {
+        "reference": {
+          "log10_MI": 10.3109243697479,
+          "MI_GeV": 20460882894.660152,
+          "log10_MGUT": 16.193300918736384,
+          "MGUT_GeV": 1.5606334771703332e+16,
+          "max_frac": 0.0005121315899623252,
+          "alpha_GUT": 0.02338813279206466,
+          "tau_p_eppi0_years": 1.7351321451404187e+36,
+          "params": {
+            "b3_LR": -5.8,
+            "b2L_LR": -1.7,
+            "b2R_LR": -1.7,
+            "bBL_LR": 6.7,
+            "split_r": 1.0,
+            "dalpha1": 0.001,
+            "dalpha2": 0.001,
+            "dalpha3": -0.001,
+            "two_loop": true,
+            "multiplets_used": true
+          }
+        },
+        "reproduced": {
+          "log10_MI": 10.3109243697479,
+          "log10_MGUT": 16.193300918736384,
+          "alpha_GUT": 0.02338813279206466,
+          "mismatch": 0.0005121315899623252,
+          "tau": 1.7351321451404187e+36,
+          "MGUT_GeV": 1.5606334771703332e+16
+        },
+        "split_r_2": {
+          "log10_MI": 10.3109243697479,
+          "log10_MGUT": 16.193300918736384,
+          "alpha_GUT": 0.023388132792064666,
+          "mismatch": 0.0005121315899626577,
+          "tau": 1.735132145140418e+36,
+          "MGUT_GeV": 1.5606334771703332e+16
+        },
+        "raw_LR_inverse_at_GUT": [
+          42.7252360957787,
+          42.7252360957787,
+          49.975893788076625,
+          31.868000437254487
+        ],
+        "raw_R_minus_BL": 18.10789335082214
+      }
+    ]
+  },
+  "current": {
+    "revision": "8d44f8c5ca6eed3a83572471dac6f9229743ec67",
+    "documented_cwd_test_exit": 0,
+    "documented_cwd_test_log": "all lr_betas checks passed\r\n",
+    "scans": [
+      {
+        "mode": "spectrum_derived",
+        "spectrum_file": "scripts/spectra/lr_minimal.json",
+        "spectrum_name": "lr_minimal",
+        "two_loop": true,
+        "rk_steps": 400,
+        "derived_lr_betas_one_loop": {
+          "SU3c": "-7",
+          "SU2L": "-3",
+          "SU2R": "-7/3",
+          "U1BL": "11/2"
+        },
+        "derived_lr_betas_two_loop": {
+          "SU3c": [
+            "-26",
+            "9/2",
+            "9/2",
+            "1/2"
+          ],
+          "SU2L": [
+            "12",
+            "8",
+            "3",
+            "3/2"
+          ],
+          "SU2R": [
+            "12",
+            "3",
+            "80/3",
+            "27/2"
+          ],
+          "U1BL": [
+            "4",
+            "9/2",
+            "81/2",
+            "61/2"
+          ]
+        },
+        "gut_threshold_multiplets": [],
+        "free_parameters": [],
+        "split_at_MI": "unification",
+        "scanned": {
+          "log10_MI": [
+            4.0,
+            15.0,
+            120
+          ]
+        },
+        "best": {
+          "log10_MI": 9.453812196317031,
+          "MI_GeV": 2843231331.7823873,
+          "log10_MGUT": 16.17709081916428,
+          "MGUT_GeV": 1.50345633428413e+16,
+          "split_r_solved": 0.6726898211646742,
+          "split_mode": "unification",
+          "alpha_inv_at_MI": {
+            "alpha_1": 47.61045487191089,
+            "alpha_2L": 38.08044792217248,
+            "alpha_3": 28.004607439897352,
+            "alpha_2R": 39.853801264929494,
+            "alpha_BL": 59.245435282382985
+          },
+          "max_frac": 1.8008509624452282e-09,
+          "max_frac_3": 2.0009444360677085e-09,
+          "spread": 1.3611285964998387e-07,
+          "alpha_GUT": 0.02205096873120473,
+          "alpha_inv_at_MGUT": {
+            "alpha_1": 45.3494816209797,
+            "alpha_2L": 45.349481484866956,
+            "alpha_3": 45.34948148486706,
+            "alpha_2R": 45.349481620979816,
+            "alpha_BL": 45.34948162097953
+          },
+          "thresholds_Delta_inv_alpha": {
+            "alpha_1": 0.0,
+            "alpha_2L": 0.0,
+            "alpha_3": 0.0,
+            "alpha_2R": 0.0,
+            "alpha_BL": 0.0
+          },
+          "tau_p_eppi0_years": 1.681233025327184e+36
+        },
+        "how_to_read_residual": "unification mode: the U(1) split is solved from alpha_2R = alpha_BL at M_GUT, so the system is exactly determined; a near-zero residual means a self-consistent solution exists in range and the outputs are the predicted M_I, M_GUT, alpha_GUT and alpha_2R(M_I).",
+        "caveats": [
+          "tau_p is a tree-level dimensional estimate (no matrix elements, no operator running); M_X = M_GUT assumed",
+          "two-loop LR coefficients are gauge-only (no Yukawa contributions)",
+          "thresholds are one-loop leading-log step functions; no finite scheme constants",
+          "matching at M_I is tree-level (no W_R / Delta_R / nu_R / heavy-bidoublet thresholds)",
+          "M_GUT is the alpha_2L = alpha_3 crossing of the two-loop running (one-loop analytic locator used as seed), clamped to root_bracket_log10",
+          "quantum numbers and heavy masses are exactly those listed in the spectrum file"
+        ]
+      },
+      {
+        "mode": "spectrum_derived",
+        "spectrum_file": "scripts/spectra/so10_10_126_thresholds.json",
+        "spectrum_name": "so10_10_126_thresholds",
+        "two_loop": true,
+        "rk_steps": 400,
+        "derived_lr_betas_one_loop": {
+          "SU3c": "-7",
+          "SU2L": "-3",
+          "SU2R": "-7/3",
+          "U1BL": "11/2"
+        },
+        "derived_lr_betas_two_loop": {
+          "SU3c": [
+            "-26",
+            "9/2",
+            "9/2",
+            "1/2"
+          ],
+          "SU2L": [
+            "12",
+            "8",
+            "3",
+            "3/2"
+          ],
+          "SU2R": [
+            "12",
+            "3",
+            "80/3",
+            "27/2"
+          ],
+          "U1BL": [
+            "4",
+            "9/2",
+            "81/2",
+            "61/2"
+          ]
+        },
+        "gut_threshold_multiplets": [
+          {
+            "name": "10_H: T",
+            "b": [
+              "1/6",
+              "0",
+              "0",
+              "1/6"
+            ],
+            "mass_GeV": 1e+16
+          },
+          {
+            "name": "10_H: Tbar",
+            "b": [
+              "1/6",
+              "0",
+              "0",
+              "1/6"
+            ],
+            "mass_GeV": 1e+16
+          },
+          {
+            "name": "126_H: (3,1,1)",
+            "b": [
+              "1/6",
+              "0",
+              "0",
+              "1/6"
+            ],
+            "mass_GeV": 1e+16
+          },
+          {
+            "name": "126_H: (3b,1,1)",
+            "b": [
+              "1/6",
+              "0",
+              "0",
+              "1/6"
+            ],
+            "mass_GeV": 1e+16
+          },
+          {
+            "name": "126_H: (6,1,3)",
+            "b": [
+              "5/2",
+              "0",
+              "4",
+              "1"
+            ],
+            "mass_GeV": 1e+16
+          },
+          {
+            "name": "126_H: (3,1,3)",
+            "b": [
+              "1/2",
+              "0",
+              "2",
+              "1/2"
+            ],
+            "mass_GeV": 1e+16
+          },
+          {
+            "name": "126_H: (6b,3,1)",
+            "b": [
+              "5/2",
+              "4",
+              "0",
+              "1"
+            ],
+            "mass_GeV": 1e+16
+          },
+          {
+            "name": "126_H: (3b,3,1)",
+            "b": [
+              "1/2",
+              "2",
+              "0",
+              "1/2"
+            ],
+            "mass_GeV": 1e+16
+          },
+          {
+            "name": "126_H: Delta_L",
+            "b": [
+              "0",
+              "2/3",
+              "0",
+              "3/2"
+            ],
+            "mass_GeV": 1e+16
+          },
+          {
+            "name": "126_H: (8,2,2)",
+            "b": [
+              "4",
+              "8/3",
+              "8/3",
+              "0"
+            ],
+            "mass_GeV": 1e+16
+          },
+          {
+            "name": "126_H: (1,2,2)",
+            "b": [
+              "0",
+              "1/3",
+              "1/3",
+              "0"
+            ],
+            "mass_GeV": 1e+16
+          },
+          {
+            "name": "126_H: (3,2,2)",
+            "b": [
+              "2/3",
+              "1",
+              "1",
+              "8/3"
+            ],
+            "mass_GeV": 1e+16
+          },
+          {
+            "name": "126_H: (3b,2,2)",
+            "b": [
+              "2/3",
+              "1",
+              "1",
+              "8/3"
+            ],
+            "mass_GeV": 1e+16
+          }
+        ],
+        "free_parameters": [],
+        "split_at_MI": "unification",
+        "scanned": {
+          "log10_MI": [
+            4.0,
+            15.0,
+            120
+          ]
+        },
+        "best": {
+          "log10_MI": 9.483741654357697,
+          "MI_GeV": 3046082449.3645988,
+          "log10_MGUT": 16.194244577256388,
+          "MGUT_GeV": 1.5640281927028442e+16,
+          "split_r_solved": 0.6734201266321358,
+          "split_mode": "unification",
+          "alpha_inv_at_MI": {
+            "alpha_1": 47.5650765763152,
+            "alpha_2L": 38.11465686289289,
+            "alpha_3": 28.08207067115594,
+            "alpha_2R": 39.837320054521925,
+            "alpha_BL": 59.15671135900511
+          },
+          "max_frac": 9.390398765276281e-10,
+          "max_frac_3": 1.043376559757086e-09,
+          "spread": 6.970741850409468e-08,
+          "alpha_GUT": 0.022451970544958302,
+          "alpha_inv_at_MGUT": {
+            "alpha_1": 44.539520423100726,
+            "alpha_2L": 44.539520353393435,
+            "alpha_3": 44.53952035339353,
+            "alpha_2R": 44.53952042310085,
+            "alpha_BL": 44.53952042310054
+          },
+          "thresholds_Delta_inv_alpha": {
+            "alpha_1": -0.7687913340266563,
+            "alpha_2L": -0.8304844657695364,
+            "alpha_3": -0.8542125933629515,
+            "alpha_2R": -0.7830282105827057,
+            "alpha_BL": -0.7474360191925826
+          },
+          "tau_p_eppi0_years": 1.8992816141146978e+36
+        },
+        "how_to_read_residual": "unification mode: the U(1) split is solved from alpha_2R = alpha_BL at M_GUT, so the system is exactly determined; a near-zero residual means a self-consistent solution exists in range and the outputs are the predicted M_I, M_GUT, alpha_GUT and alpha_2R(M_I).",
+        "caveats": [
+          "tau_p is a tree-level dimensional estimate (no matrix elements, no operator running); M_X = M_GUT assumed",
+          "two-loop LR coefficients are gauge-only (no Yukawa contributions)",
+          "thresholds are one-loop leading-log step functions; no finite scheme constants",
+          "matching at M_I is tree-level (no W_R / Delta_R / nu_R / heavy-bidoublet thresholds)",
+          "M_GUT is the alpha_2L = alpha_3 crossing of the two-loop running (one-loop analytic locator used as seed), clamped to root_bracket_log10",
+          "quantum numbers and heavy masses are exactly those listed in the spectrum file"
+        ]
+      },
+      {
+        "mode": "spectrum_derived",
+        "spectrum_file": "scripts/spectra/lr_dparity_symmetric.json",
+        "spectrum_name": "lr_dparity_symmetric",
+        "two_loop": true,
+        "rk_steps": 400,
+        "derived_lr_betas_one_loop": {
+          "SU3c": "-7",
+          "SU2L": "-7/3",
+          "SU2R": "-7/3",
+          "U1BL": "7"
+        },
+        "derived_lr_betas_two_loop": {
+          "SU3c": [
+            "-26",
+            "9/2",
+            "9/2",
+            "1/2"
+          ],
+          "SU2L": [
+            "12",
+            "80/3",
+            "3",
+            "27/2"
+          ],
+          "SU2R": [
+            "12",
+            "3",
+            "80/3",
+            "27/2"
+          ],
+          "U1BL": [
+            "4",
+            "81/2",
+            "81/2",
+            "115/2"
+          ]
+        },
+        "gut_threshold_multiplets": [],
+        "free_parameters": [],
+        "split_at_MI": "lr_parity",
+        "scanned": {
+          "log10_MI": [
+            4.0,
+            15.0,
+            120
+          ]
+        },
+        "best": {
+          "log10_MI": 10.494006569119113,
+          "MI_GeV": 31189367606.36552,
+          "log10_MGUT": 15.35823227592043,
+          "MGUT_GeV": 2281562005118756.0,
+          "split_r_solved": 0.6990112557737875,
+          "split_mode": "lr_parity",
+          "alpha_inv_at_MI": {
+            "alpha_1": 46.03374590218689,
+            "alpha_2L": 39.27000405478366,
+            "alpha_3": 30.695639973858746,
+            "alpha_2R": 39.27000405478366,
+            "alpha_BL": 56.17935867329171
+          },
+          "max_frac": 2.893306151769958e-09,
+          "max_frac_3": 1.0715942691597102e-09,
+          "spread": 1.7376734007257255e-07,
+          "alpha_GUT": 0.023125642723996205,
+          "alpha_inv_at_MGUT": {
+            "alpha_1": 43.24204141771041,
+            "alpha_2L": 43.24204134820347,
+            "alpha_3": 43.24204134820358,
+            "alpha_2R": 43.24204134820347,
+            "alpha_BL": 43.24204152197081
+          },
+          "thresholds_Delta_inv_alpha": {
+            "alpha_1": 0.0,
+            "alpha_2L": 0.0,
+            "alpha_3": 0.0,
+            "alpha_2R": 0.0,
+            "alpha_BL": 0.0
+          },
+          "tau_p_eppi0_years": 8.107024075542678e+32
+        },
+        "how_to_read_residual": "lr_parity mode: g_L = g_R at M_I is imposed, the system is over-determined, and the residual is a genuine test of the multiplet content.",
+        "caveats": [
+          "tau_p is a tree-level dimensional estimate (no matrix elements, no operator running); M_X = M_GUT assumed",
+          "two-loop LR coefficients are gauge-only (no Yukawa contributions)",
+          "thresholds are one-loop leading-log step functions; no finite scheme constants",
+          "matching at M_I is tree-level (no W_R / Delta_R / nu_R / heavy-bidoublet thresholds)",
+          "M_GUT is the alpha_2L = alpha_3 crossing of the two-loop running (one-loop analytic locator used as seed), clamped to root_bracket_log10",
+          "quantum numbers and heavy masses are exactly those listed in the spectrum file"
+        ]
+      }
+    ]
+  }
+}
