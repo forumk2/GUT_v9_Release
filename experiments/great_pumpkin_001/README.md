@@ -35,6 +35,8 @@ Artifacts:
   adversarial offsets and conditional observable illustrations.
 - `verification.json`: tests and corrected full-reference scans.
 - `formal.json`: compiler identity, source hash and axiom reports.
+- `clean_export.json`: full tests and reference scans in a fresh committed
+  source export, with the tested commit recorded.
 - `threshold_geometry.png` / `.svg`: standalone scientific figure.
 
 Reproduction can change irrelevant environment strings and sub-rounding floats.

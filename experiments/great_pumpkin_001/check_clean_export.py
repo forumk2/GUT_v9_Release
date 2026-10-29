@@ -1,4 +1,7 @@
-"""Verify a fresh Git export; no pre-existing outputs or local build products."""
+"""Verify a fresh Git export with no local scratch or build products.
+
+Committed historical evidence is present; validation writes new scratch output.
+"""
 from pathlib import Path
 import io
 import json

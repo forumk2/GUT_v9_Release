@@ -1,0 +1,155 @@
+{
+  "revision": "276b87d58ec8682c8c44fd069cd7844ef9756985",
+  "method": "git archive to a new temporary directory",
+  "exit_code": 0,
+  "checks": [
+    {
+      "command": [
+        "-m",
+        "pytest",
+        "scripts/test_lr_betas.py",
+        "experiments/great_pumpkin_001/test_expedition.py",
+        "-q"
+      ],
+      "cwd": "root",
+      "exit_code": 0,
+      "stdout": "...............                                                          [100%]\n15 passed in 1.50s\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "scripts/test_lr_betas.py"
+      ],
+      "cwd": "root",
+      "exit_code": 0,
+      "stdout": "all lr_betas checks passed\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "test_lr_betas.py"
+      ],
+      "cwd": "scripts",
+      "exit_code": 0,
+      "stdout": "all lr_betas checks passed\n",
+      "stderr": ""
+    },
+    {
+      "command": "bash scripts/validate.sh",
+      "cwd": "root",
+      "exit_code": 0,
+      "numerical_comparator_passed": true
+    },
+    {
+      "spectrum": "lr_minimal",
+      "best": {
+        "log10_MI": 9.453812196317031,
+        "MI_GeV": 2843231331.7823873,
+        "log10_MGUT": 16.177090819166274,
+        "MGUT_GeV": 1.5034563342910296e+16,
+        "split_r_solved": 0.6726898211645962,
+        "split_mode": "unification",
+        "alpha_inv_at_MI": {
+          "alpha_1": 47.61045487191089,
+          "alpha_2L": 38.08044792217248,
+          "alpha_3": 28.004607439897352,
+          "alpha_2R": 39.85380126492719,
+          "alpha_BL": 59.24543528238644
+        },
+        "max_frac": 1.80082589339615e-09,
+        "max_frac_3": 2.0008817634449692e-09,
+        "spread": 1.3611004590075026e-07,
+        "alpha_GUT": 0.02205096873120423,
+        "alpha_inv_at_MGUT": {
+          "alpha_1": 45.34948162097902,
+          "alpha_2L": 45.349481484869116,
+          "alpha_3": 45.34948148487207,
+          "alpha_2R": 45.34948162097916,
+          "alpha_BL": 45.349481620978814
+        },
+        "thresholds_Delta_inv_alpha": {
+          "alpha_1": 0.0,
+          "alpha_2L": 0.0,
+          "alpha_3": 0.0,
+          "alpha_2R": 0.0,
+          "alpha_BL": 0.0
+        },
+        "tau_p_eppi0_years": 1.6812330253581224e+36
+      }
+    },
+    {
+      "spectrum": "so10_10_126_thresholds",
+      "best": {
+        "log10_MI": 9.483741654357697,
+        "MI_GeV": 3046082449.3645988,
+        "log10_MGUT": 16.19424457725933,
+        "MGUT_GeV": 1.564028192713438e+16,
+        "split_r_solved": 0.6734201266320278,
+        "split_mode": "unification",
+        "alpha_inv_at_MI": {
+          "alpha_1": 47.5650765763152,
+          "alpha_2L": 38.11465686289289,
+          "alpha_3": 28.08207067115594,
+          "alpha_2R": 39.83732005451875,
+          "alpha_BL": 59.156711359009876
+        },
+        "max_frac": 9.390143515925307e-10,
+        "max_frac_3": 1.0432975919886234e-09,
+        "spread": 6.970418553464697e-08,
+        "alpha_GUT": 0.022451970544963593,
+        "alpha_inv_at_MGUT": {
+          "alpha_1": 44.53952042308812,
+          "alpha_2L": 44.53952035338407,
+          "alpha_3": 44.53952035338823,
+          "alpha_2R": 44.539520423088256,
+          "alpha_BL": 44.53952042308792
+        },
+        "thresholds_Delta_inv_alpha": {
+          "alpha_1": -0.7687913340382988,
+          "alpha_2L": -0.830484465782113,
+          "alpha_3": -0.8542125933758875,
+          "alpha_2R": -0.7830282105945636,
+          "alpha_BL": -0.7474360192039016
+        },
+        "tau_p_eppi0_years": 1.8992816141652617e+36
+      }
+    },
+    {
+      "spectrum": "lr_dparity_symmetric",
+      "best": {
+        "log10_MI": 10.494006569119113,
+        "MI_GeV": 31189367606.36552,
+        "log10_MGUT": 15.358232275920502,
+        "MGUT_GeV": 2281562005119129.5,
+        "split_r_solved": 0.6990112557737875,
+        "split_mode": "lr_parity",
+        "alpha_inv_at_MI": {
+          "alpha_1": 46.03374590218689,
+          "alpha_2L": 39.27000405478366,
+          "alpha_3": 30.695639973858746,
+          "alpha_2R": 39.27000405478366,
+          "alpha_BL": 56.17935867329171
+        },
+        "max_frac": 2.893301386560295e-09,
+        "max_frac_3": 1.0715918043960894e-09,
+        "spread": 1.7376709138261504e-07,
+        "alpha_GUT": 0.02312564272399618,
+        "alpha_inv_at_MGUT": {
+          "alpha_1": 43.242041417710396,
+          "alpha_2L": 43.242041348203564,
+          "alpha_3": 43.24204134820377,
+          "alpha_2R": 43.242041348203564,
+          "alpha_BL": 43.242041521970656
+        },
+        "thresholds_Delta_inv_alpha": {
+          "alpha_1": 0.0,
+          "alpha_2L": 0.0,
+          "alpha_3": 0.0,
+          "alpha_2R": 0.0,
+          "alpha_BL": 0.0
+        },
+        "tau_p_eppi0_years": 8.107024075548003e+32
+      }
+    }
+  ]
+}

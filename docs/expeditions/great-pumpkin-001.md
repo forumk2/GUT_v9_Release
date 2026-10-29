@@ -1,6 +1,6 @@
 # Expedition 001 — The Great Pumpkin of 2026
 
-Status: verification complete; draft PR handoff in preparation. Branch:
+Status: verification complete; human review pending. Branch:
 `expedition/001-great-pumpkin`. Baseline:
 `8d44f8c5ca6eed3a83572471dac6f9229743ec67`. Historical scanner: its parent.
 The working tree was clean at departure. No merge is authorized.
@@ -56,7 +56,7 @@ on MI, MG, proton decay or vacuum stability.
 | E3 | Analytic and independent adaptive boundary solvers, adversarial free-offset construction | verified; [prototype](../../experiments/great_pumpkin_001/model.py), `experiments.json` |
 | E4 | Methods, steps, initial guesses, data boxes, mass correlations, local adversarial optimization | verified within stated scope; numerical evidence below |
 | E5 | Meaningful formal theorem without admitted proofs; independent kernel invocation | nine theorems verified; [mathematics](great-pumpkin-001-mathematics.md), `formal.json` |
-| E6 | Ledger, dated literature comparison, tests and review handoff | documents/tests complete; draft PR publication pending |
+| E6 | Ledger, dated literature comparison, tests and review handoff | complete; draft PR linked in the final handoff, no merge |
 
 Evidence files live in [`experiments/great_pumpkin_001/results`](../../experiments/great_pumpkin_001/results).
 Established statements and open questions are separated in the
@@ -171,6 +171,13 @@ The real Bash validation runs from repository root and checks all three full
 reference scans. Historical reproduction needs Git history containing the
 baseline and its parent. Scripts locate inputs relative to their own files.
 For Lean, follow [the pinned project instructions](../../formal/great_pumpkin/README.md).
+
+The full validation also passed in a fresh `git archive` export of expedition
+commit `276b87d58ec8682c8c44fd069cd7844ef9756985`, using the installed pinned
+dependencies and no pre-existing local scratch/build products. The export
+retains committed historical evidence; new validation output is generated
+separately. See `results/clean_export.json`. Subsequent handoff edits affect
+documentation and plot whitespace only, not the tested numerical algorithms.
 
 Review sequence:
 

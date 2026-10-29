@@ -48,4 +48,7 @@ ax.legend(fontsize=8,loc="lower left")
 fig.suptitle("Expedition 001 · Conditional gauge-sector results",fontsize=13)
 fig.savefig(HERE/"results/threshold_geometry.png",dpi=180)
 fig.savefig(HERE/"results/threshold_geometry.svg")
+svg=HERE/"results/threshold_geometry.svg"
+svg.write_text("\n".join(line.rstrip() for line in svg.read_text(encoding="utf-8").splitlines())+"\n",
+               encoding="utf-8",newline="\n")
 print("wrote threshold_geometry.png and .svg")

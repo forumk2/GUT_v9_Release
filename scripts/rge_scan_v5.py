@@ -20,8 +20,8 @@ Pipeline for each trial intermediate scale M_I on a grid:
         "unification": solved from alpha_2R(M_GUT) = alpha_BL(M_GUT)
         "lr_parity":   g_L = g_R at M_I (manifest left-right symmetry)
                                                (Model.split_at_MI)
-  7. residual metric over (alpha_1, alpha_2L, alpha_3) at M_GUT
-                                               (rge_core.mismatch_metrics)
+  7. residual over (alpha_1, alpha_2L, alpha_3, alpha_2R, alpha_BL) at M_GUT
+                                               (rge_core.mismatch_metrics_n)
   8. tree-level proton-lifetime estimate       (proton_decay_tau_years)
 
 The reported point is the grid minimum of the residual, refined by a local
